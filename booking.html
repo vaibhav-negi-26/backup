@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mile Partner</title>
+    <!--== META TAGS ==-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- FAV ICON -->
+    <link rel="shortcut icon" href="images/fav.ico">
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins%7CQuicksand:400,500,700" rel="stylesheet">
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--== ALL CSS FILES ==-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/booking.css">
+    <link rel="stylesheet" href="css/materialize.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/mob.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body ng-app="myBooking" ng-controller="myBookingCtrl">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+
+    <!-- MOBILE MENU -->
+    <section ng-include="'template/mob-navbar.html'">
+    </section>
+    <!--Navbar SECTION-->
+    <section ng-include="'template/navbar.html'">
+    </section>
+    <!--END Navbar SECTION-->
+
+    <!--DASHBOARD-->
+    <section style="background-color: #eee;">
+
+        <div class="container top_booking">
+            <div class="row">
+                <div class="col-md-6 top_details">
+                    <i class="fa fa-plane" aria-hidden="true"></i>
+                    Mussoorie, Haridwar & Rishikesh
+                    <br>
+                    <p>
+                        <b>Seller :</b> Mile Partner
+                    </p>
+                </div>
+                <div class="col-md-3 top_details">
+                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                    Thu, 2Jan - Mon, 6Jan
+                </div>
+                <div class="col-md-3 top_details">
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    2 Adult(s)
+                </div>
+            </div>
+            <div class="row">
+                <button class="save_as_pdf"
+                    style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                    <i class="fa fa-floppy-o" aria-hidden="true"></i> Save as PDF
+                </button>
+            </div>
+            <div class="row" style=" padding: 1% 0 1% 1%;">
+                <div class="progress"
+                    style="margin: 0 !important;box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
+                        aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                        60%
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+
+                <!-- col-md-9 -->
+                <div class="col-md-9" style="padding: 1.25% !important;">
+
+                    <div class="card_Hotel"
+                        style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                        <div class="container_one">
+                            <h4><b>Hotel Details</b></h4>
+                        </div>
+
+                        <div class="card_Hotel_repeat">
+                            <p>
+                                <b>Hotel Details : </b>1 Room(s) | 2 Adult(s)
+                            </p>
+                            <!-- repeating element start -->
+                            <div>
+                                <button>Hotel #1</button>
+                            </div>
+                            <div class="row" style="margin-top: 1.5%;">
+                                <div class="col-md-4">
+                                    <div class="date_box">
+                                        <span>Check-in</span>
+                                        <div class="date_box_one">
+                                            <p style="margin: 0 !important;">Thu</p>
+                                        </div>
+                                        <div class="date_box_two">
+                                            <h1 style="margin: 1% !important;">02</h1>
+                                            <p>Jan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="text-align: center; ">
+                                    <div>
+                                        <br>
+                                        <br>
+                                        <i class="fa fa-moon-o" aria-hidden="true"></i>
+                                        <p>2 Night(s)</p>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="date_box">
+                                        <span>Check-out</span>
+                                        <div class="date_box_one">
+                                            <p style="margin: 0 !important;">Sat</p>
+                                        </div>
+                                        <div class="date_box_two">
+                                            <h1 style="margin: 1% !important;">04</h1>
+                                            <p>Jan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <br>
+                                <p>Hardiwar</p>
+                                <div>
+                                    <h4><b>TEST HOTEL</b>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
+                                </div>
+                                <p>
+                                    <b>Room 1 : </b> 2 Adult(s)
+                                </p>
+                                <a href="JavaScript:Void(0);"><u>View Details</u></a>
+                            </div>
+                            <div style=" margin-top: 2%;border-bottom: 2px dashed rgba(0, 0, 0, 0.20);">
+                            </div>
+                            <!-- repeating element end-->
+                            <!-- repeating element start -->
+                            <div>
+                                <button>Hotel #2</button>
+                            </div>
+                            <div class="row" style="margin-top: 1.5%;">
+                                <div class="col-md-4">
+                                    <div class="date_box">
+                                        <span>Check-in</span>
+                                        <div class="date_box_one">
+                                            <p style="margin: 0 !important;">Thu</p>
+                                        </div>
+                                        <div class="date_box_two">
+                                            <h1 style="margin: 1% !important;">04</h1>
+                                            <p>Jan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" style="text-align: center; ">
+                                    <div>
+                                        <br>
+                                        <br>
+                                        <i class="fa fa-moon-o" aria-hidden="true"></i>
+                                        <p>1 Night(s)</p>
+                                        <br>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="date_box">
+                                        <span>Check-out</span>
+                                        <div class="date_box_one">
+                                            <p style="margin: 0 !important;">Sat</p>
+                                        </div>
+                                        <div class="date_box_two">
+                                            <h1 style="margin: 1% !important;">06</h1>
+                                            <p>Jan</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <br>
+                                <p>Rishikesh</p>
+                                <div>
+                                    <h4><b>TEST HOTEL</b>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star checked"></span>
+                                        <span class="fa fa-star"></span>
+                                        <span class="fa fa-star"></span>
+                                    </h4>
+                                </div>
+                                <p>
+                                    <b>Room 1 : </b> 2 Adult(s)
+                                </p>
+                                <a href="JavaScript:Void(0);"><u>View Details</u></a>
+                            </div>
+                            <div style=" margin-top: 2%;border-bottom: 2px dashed rgba(0, 0, 0, 0.20);">
+                            </div>
+                            <!-- repeating element end-->
+                        </div>
+                    </div>
+
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                        <div class="panel panel-default"
+                            style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                            <div class="panel-heading" role="tab" id="headingTwo">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        Itinerary
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingTwo">
+                                <div class="panel-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem,
+                                        dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu
+                                        tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit
+                                        posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default"
+                            style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                            <div class="panel-heading" role="tab" id="headingThree">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        Inclusion
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingThree">
+                                <div class="panel-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem,
+                                        dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu
+                                        tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit
+                                        posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default"
+                            style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                            <div class="panel-heading" role="tab" id="headingFour">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                        href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        Exclusion
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseFour" class="panel-collapse collapse" role="tabpanel"
+                                aria-labelledby="headingFour">
+                                <div class="panel-body">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent nisl lorem,
+                                        dictum id pellentesque at, vestibulum ut arcu. Curabitur erat libero, egestas eu
+                                        tincidunt ac, rutrum ac justo. Vivamus condimentum laoreet lectus, blandit
+                                        posuere tortor aliquam vitae. Curabitur molestie eros. </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel panel-default"
+                            style="box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1), 0 1px 5px 0 rgba(0, 0, 0, 0.1);">
+                            <div class="panel-heading" role="tab" id="headingOne">
+                                <h4 class="panel-title">
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        Sign In Now to Book Online
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                                aria-labelledby="headingOne">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-md-6 sign_in_book"
+                                            style="border-right: 1px solid rgba(0, 0, 0, 0.20)">
+                                            <div class="row">
+                                                <div class="col-md-12" style="padding: 2% 3%;">
+                                                    <input type="email" placeholder="Enter email Address">
+                                                    <br>
+                                                    <span style="font-size: 0.75em;">Your booking details will be sent
+                                                        to this email address.</span>
+                                                    <br>
+                                                    <div>
+                                                        <input id="account" class="styled" type="checkbox">
+                                                        <label for="account"> I have a Account</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12" style="padding: 3%;">
+                                                    <input type="number" placeholder="Enter phone number">
+                                                    <br>
+                                                    <span style="font-size: 0.75em;">We'll use this number to send
+                                                        possible update alerts.</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12" style="padding: 3%;">
+                                                <input type="submit" value="Book as Guest"
+                                                    class="waves-effect waves-light tourz-sear-btn v2-ser-btn">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="col-md-12 facebook_btn" style="padding: 3%;">
+                                                <button class="btn btn-primary">
+                                                    Facebook login
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- col-md-3 -->
+                <div class="col-md-3" style="padding: 0 !important;">
+                    <!-- start -->
+                    <div class="card_pice_total">
+                        <div class="container_one">
+                            <h4>Fare Details</h4>
+                        </div>
+                        <div class="container_two">
+                            <span>
+                                Base Price
+                            </span>
+                            <span style="float: right;">
+                                ₹ 27,800
+                            </span>
+                        </div>
+                        <div class="container_two">
+                            <span>
+                                Taxes
+                            </span>
+                            <span style="float: right;">
+                                ₹ 1,090
+                            </span>
+                        </div>
+                        <div class="container_three">
+                            <p style="text-align: right; margin: 0 !important;">
+                                You Pay
+                            </p>
+                            <h1 style="text-align: right; margin: 0 !important;">
+                                ₹ 1,090
+                            </h1>
+                        </div>
+                    </div>
+                    <!-- end -->
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!--END DASHBOARD-->
+
+
+    <!--====== FOOTER - COPYRIGHT ==========-->
+    <section>
+        <div class="rows copy">
+            <div class="container">
+                <p>Copyrights © 2017 Company Name. All Rights Reserved</p>
+            </div>
+        </div>
+    </section>
+
+    <!--========= Scripts ===========-->
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/angularjs.js"></script>
+    <script src="js/angularCode/booking.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700&display=swap');
+
+body {
+    background: linear-gradient(70deg, #e6e6e6, #f7f7f7);
+    color: #514B64;
+    min-height: 100vh;
+    font-family: 'Quicksand', sans-serif !important;
+}
+
+code {
+    background: #fff;
+    padding: 0.2rem;
+    border-radius: 0.2rem;
+    margin: 0 0.3rem;
+}
+
+nav {
+    padding: 0.5% !important;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
+    font-weight: bold;
+}
+
+/* tabs */
+
+@media (min-width: 576px) {
+    .rounded-nav {
+        border-radius: 50rem !important;
+    }
+}
+
+@media (min-width: 576px) {
+    .rounded-nav .nav-link {
+        border-radius: 50rem !important;
+    }
+}
+
+.list-bus {
+    padding: 2%;
+    font-size: 1.25rem;
+    background-color: #f8f9fa;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
+    margin-bottom: 2%;
+}
+
+.icon img {
+    max-width: 45%;
+}
+
+.info-btn:hover {
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+}
+
+.text-uppercase {
+    letter-spacing: 0.1em;
+}
+
+/* footer */
+.footer {
+    background-color: #f8f9fa;
+}
+
+.footer p {
+    margin: 0 !important;
+    padding: 1%;
+}
