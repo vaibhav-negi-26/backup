@@ -5,6 +5,7 @@ body {
     color: #514B64;
     min-height: 100vh;
     font-family: 'Quicksand', sans-serif !important;
+    overflow-x: hidden;
 }
 
 code {
@@ -28,6 +29,7 @@ nav {
     }
 }
 
+
 @media (min-width: 576px) {
     .rounded-nav .nav-link {
         border-radius: 50rem !important;
@@ -43,7 +45,7 @@ nav {
 }
 
 .icon img {
-    max-width: 45%;
+    max-width: 100%;
 }
 
 .info-btn:hover {
@@ -56,10 +58,41 @@ nav {
 
 /* footer */
 .footer {
-    background-color: #f8f9fa;
+    background-color: #ffffff;
 }
 
 .footer p {
     margin: 0 !important;
     padding: 1%;
+}
+
+/* success page */
+.jumbotron {
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
+    margin-top: 4%;
+    width: 100% !important;
+}
+
+@media (max-width: 576px) {
+    .jumbotron {
+        margin: 20% 0;
+    }
+
+    .footer {
+        margin-top: 120px;
+    }
+
+    .footer p {
+        padding: 20px;
+    }
+}
+
+/* filter */
+.filter .input-field input {
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 1%;
+    border-radius: 15px;
+    font-size: 1.25rem;
 }

@@ -12,13 +12,14 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!--== ALL CSS FILES ==-->
 	<link rel="stylesheet" href="css/bus.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/datepicker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
 </head>
 
 <body ng-app="">
 	<!-- NAVBAR-->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+	<nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #ffffff !important;">
 		<div class="container">
 			<a href="index.html" class="navbar-brand">
 				<!-- Logo Image -->
@@ -31,10 +32,9 @@
 
 			<div id="navbarSupportedContent" class="collapse navbar-collapse">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Packages</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Events</a></li>
-					<li class="nav-item"><a href="#" class="nav-link">Profile</a></li>
+					<li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+					<li class="nav-item"><a href="print-cancel.html" class="nav-link">Print/Cancel Ticket</a></li>
+					<li class="nav-item"><a href="#" class="nav-link"></a></li>
 					<li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
 				</ul>
 			</div>
@@ -42,124 +42,146 @@
 	</nav>
 
 	<!-- Main content -->
-
-	<div class="pt-4 pb-5">
-		<div class=" rounded shadow m-2">
-			<!-- Rounded tabs -->
-			<ul id="myTab" role="tablist"
-				class="nav nav-tabs nav-pills flex-column flex-sm-row justify-content-around border-0 rounded-nav">
-				<li class="nav-item flex-sm-fill">
-					<a id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"
-						class="nav-link border-0 text-uppercase font-weight-bold active">Private Bus</a>
-				</li>
-				<li class="nav-item flex-sm-fill">
-					<a id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
-						aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">government
-						bus</a>
-				</li>
-			</ul>
-			<div id="myTabContent" class="tab-content">
-				<div id="home" role="tabpanel" aria-labelledby="home-tab" class="tab-pane fade px-4 py-5 show active">
-					<!-- repreating element -->
-					<div class="row list-bus">
-						<div class="col-md-2 icon px-5">
-							<img src="images/icon/bus-stop.png" alt="busicon">
-						</div>
-						<div class="col-md-3">
-							<p>
-								<b>
-									Classic Travels
-								</b>
-							</p>
-							<p>
-								A/C Sleeper (2+1)
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p>
-								<span>
-									11:30 PM
-								</span>
-								<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
-								<span>
-									05:30 AM
-								</span>
-							</p>
-							<p style="color: #007bff; font-weight: 500;">
-								Boarding & Dropping point
-							</p>
-						</div>
-						<div class="col-md-2">
-							<img src="images/icon/passenger.png" alt="passengericon">
-							<p>
-								<span>40</span> Seats
-							</p>
-						</div>
-						<div class="col-md-2">
-							<p><b>₹6,050</b></p>
-							<button class="btn btn-info info-btn">View Seats</button>
-						</div>
-					</div>
-					<!-- repreating element -->
-					<div class="row list-bus">
-						<div class="col-md-2 icon px-5">
-							<img src="images/icon/bus-stop.png" alt="busicon">
-						</div>
-						<div class="col-md-3">
-							<p>
-								<b>
-									Classic Travels
-								</b>
-							</p>
-							<p>
-								A/C Sleeper (2+1)
-							</p>
-						</div>
-						<div class="col-md-3">
-							<p>
-								<span>
-									11:30 PM
-								</span>
-								<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
-								<span>
-									05:30 AM
-								</span>
-							</p>
-							<p style="color: #007bff; font-weight: 500;">
-								Boarding & Dropping point
-							</p>
-						</div>
-						<div class="col-md-2">
-							<img src="images/icon/passenger.png" alt="passengericon">
-							<p>
-								<span>40</span> Seats
-							</p>
-						</div>
-						<div class="col-md-2">
-							<p><b>₹6,050</b></p>
-							<button class="btn btn-info info-btn">View Seats</button>
-						</div>
+	<div class="row">
+		<div class="col-md-9">
+			<!-- filter -->
+			<div class="row text-center filter mt-3 animated fadeIn">
+				<div class="col-md-4">
+					<button type="button" class="btn btn-danger"> <i class="fa fa-arrow-left" aria-hidden="true"></i> Prev. Day</button>
+				</div>
+				<div class="col-md-4">
+					<div class="input-field">
+						<input type="text" id="to" name="departuredate" placeholder="Date">
+						<label for="to"></label>
 					</div>
 				</div>
-				<div id="profile" role="tabpanel" aria-labelledby="profile-tab" class="tab-pane fade px-4 py-5">
-					<p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-						irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-						id est laborum.</p>
-					<p class="text-muted mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-						exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-						irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-						Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim
-						id est laborum.</p>
+				<div class="col-md-4">
+					<button type="button" class="btn btn-danger">Next Day <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
 				</div>
 			</div>
-			<!-- End rounded tabs -->
+			<!-- filter end -->
+			<div class="pt-4 pb-5 wow fadeInUp" data-wow-duration="0.7s">
+				<div class=" rounded shadow m-2">
+					<!-- Rounded tabs -->
+					<ul id="myTab" role="tablist"
+						class="nav nav-tabs nav-pills flex-column flex-sm-row justify-content-around border-0 rounded-nav animated fadeInUp">
+						<li class="nav-item flex-sm-fill">
+							<a id="private-tab" data-toggle="tab" href="#private" role="tab" aria-controls="private"
+								aria-selected="true"
+								class="nav-link border-0 text-uppercase font-weight-bold active">Private
+								Bus</a>
+						</li>
+						<li class="nav-item flex-sm-fill">
+							<a id="government-tab" data-toggle="tab" href="#government" role="tab"
+								aria-controls="government" aria-selected="false"
+								class="nav-link border-0 text-uppercase font-weight-bold">government
+								bus</a>
+						</li>
+					</ul>
+
+					<div id="myTabContent" class="tab-content">
+						<div id="private" role="tabpanel" aria-labelledby="private-tab"
+							class="tab-pane fade px-4 py-5 show active">
+							<!-- repreating element -->
+							<div class="row list-bus animated fadeInUp">
+								<div class="col-md-2 icon px-md-5">
+									<img src="images/icon/buses.png" alt="busicon">
+								</div>
+								<div class="col-md-3">
+									<p>
+										<b>
+											Classic Travels
+										</b>
+									</p>
+									<p>
+										A/C Sleeper (2+1)
+									</p>
+								</div>
+								<div class="col-md-3">
+									<p>
+										<span>
+											11:30 PM
+										</span>
+										<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
+										<span>
+											05:30 AM
+										</span>
+									</p>
+									<p style="color: #007bff; font-weight: 500;">
+										Boarding & Dropping point
+									</p>
+								</div>
+								<div class="col-md-2">
+									<img src="images/icon/passenger.png" alt="passengericon">
+									<p>
+										<span>40</span> Seats
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p><b>₹6,050</b></p>
+									<button class="btn btn-info info-btn">View Seats</button>
+								</div>
+							</div>
+						</div>
+						<div id="government" role="tabpanel" aria-labelledby="government-tab"
+							class="tab-pane fade px-4 py-5">
+							<!-- repreating element -->
+							<div class="row list-bus animated fadeInUp">
+								<div class="col-md-2 icon px-md-5">
+									<img src="images/icon/buses.png" alt="busicon">
+								</div>
+								<div class="col-md-3">
+									<p>
+										<b>
+											Classic Travels
+										</b>
+									</p>
+									<p>
+										A/C Sleeper (2+1)
+									</p>
+								</div>
+								<div class="col-md-3">
+									<p>
+										<span>
+											11:30 PM
+										</span>
+										<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
+										<span>
+											05:30 AM
+										</span>
+									</p>
+									<p style="color: #007bff; font-weight: 500;">
+										Boarding & Dropping point
+									</p>
+								</div>
+								<div class="col-md-2">
+									<img src="images/icon/passenger.png" alt="passengericon">
+									<p>
+										<span>40</span> Seats
+									</p>
+								</div>
+								<div class="col-md-2">
+									<p><b>₹6,050</b></p>
+									<button class="btn btn-info info-btn">View Seats</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- End rounded tabs -->
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-3">
+			<div class="jumbotron jumbotron-fluid animated slideInRight">
+				<div class="container">
+					<h1 class="display-4">Empty Space</h1>
+					<p class="lead">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Maiores laboriosam at,
+						rerum necessitatibus corrupti omnis nesciunt atque fugit explicabo modi?</p>
+				</div>
+			</div>
 		</div>
 	</div>
-
 
 	<!-- footer -->
 	<div class="footer">
@@ -170,16 +192,15 @@
 
 	<!--========= Scripts ===========-->
 	<script src="js/angularjs.js"></script>
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-		integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+	<script src="js/jquery-latest.min.js"></script>
+	<script src="js/jquery-ui.js"></script>
+	<script>
+		$('#to').datepicker();
 	</script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-		integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
 	</script>
-	<!-- <script src="js/angularCode/all-pack.js"></script> -->
 </body>
 
 </html>

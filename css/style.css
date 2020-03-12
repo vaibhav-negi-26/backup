@@ -5930,12 +5930,12 @@ textarea {
 }
 
 .ui-datepicker-prev {
-    background: url('../images/left-arrow.png') no-repeat center center;
+    background: url('../images/back.png') no-repeat center center;
     background-size: 12px;
 }
 
 .ui-datepicker-next {
-    background: url('../images/right-arrow.png') no-repeat center center;
+    background: url('../images/next.png') no-repeat center center;
     background-size: 12px;
 }
 
@@ -6303,8 +6303,8 @@ a.ui-button:active,
 /* Icons ----------------------------------*/
 /* states and images */
 .ui-icon {
-    width: 16px;
-    height: 16px;
+    width: 32px;
+    height: 32px;
 }
 
 .ui-state-disabled span {

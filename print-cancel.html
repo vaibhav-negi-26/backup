@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mile Partner - Print/Cancel</title>
+    <!-- FAV ICON -->
+    <link rel="shortcut icon" href="images/fav.ico">
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        h1 {
+            text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+        }
+        h3{
+            text-shadow: 1px 1px rgba(0, 0, 0, 0.5);
+        }
+        /* Rounded tabs */
+        @media (min-width: 576px) {
+            .rounded-nav {
+                border-radius: 50rem !important;
+            }
+        }
+
+        @media (min-width: 576px) {
+            .rounded-nav .nav-link {
+                border-radius: 50rem !important;
+            }
+        }
+
+        body {
+            background: #23074d;
+            background: -webkit-linear-gradient(to right, #23074d, #cc5333);
+            background: linear-gradient(120deg, #23074d, #cc5333);
+            min-height: 100vh;
+        }
+
+        .nav-pills .nav-link {
+            color: #555;
+        }
+
+        .text-uppercase {
+            letter-spacing: 0.1em;
+        }
+
+        .form-check {
+            margin-top: 5%;
+            padding: 0 !important;
+        }
+
+        .foot {
+            background-color: #ffffff;
+        }
+
+        .foot p {
+            margin: 0 !important;
+            padding: 1%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <a href="all-buses.html" class="btn btn-danger" style="border-radius: 20px; color: white;">
+            <i class="fa fa-arrow-left fa-sm animated bounceIn" aria-hidden="true"></i>
+        </a>
+        <!-- For demo purpose -->
+        <div class="row mb-2 animated fadeIn">
+            <div class="col-lg-8 text-white py-2 text-center mx-auto">
+                <h1 class="display-4 font-weight-bold text-uppercase">Print <span style="color: crimson;">/
+                        Cancel</span></h1>
+                <p class="lead mb-0">Your Ticket</p>
+            </div>
+        </div>
+        <!-- End -->
+
+        <div class="row animated fadeIn">
+            <div class="col-md-12">
+                <div class="p-md-5 bg-white rounded shadow mb-5">
+                    <!-- Rounded tabs -->
+                    <ul id="myTab" role="tablist"
+                        class="nav nav-tabs nav-pills flex-column flex-sm-row text-center bg-light border-0 rounded-nav justify-content-md-around">
+                        <li class="nav-item flex-sm-fill animated bounceIn">
+                            <a id="print-tab" data-toggle="tab" href="#print" role="tab" aria-controls="print"
+                                aria-selected="true"
+                                class="nav-link border-0 text-uppercase font-weight-bold active">print</a>
+                        </li>
+                        <li class="nav-item flex-sm-fill animated bounceIn">
+                            <a id="cancel-tab" data-toggle="tab" href="#cancel" role="tab" aria-controls="cancel"
+                                aria-selected="false"
+                                class="nav-link border-0 text-uppercase font-weight-bold">cancel</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <!-- print -->
+                        <div id="print" role="tabpanel" aria-labelledby="print-tab"
+                            class="tab-pane fade px-md-4 py-5 show active animated fadeIn">
+                            <h3 class="text-center ">Enter Your Ticket Details</h3>
+                            <div class="form-check">
+                                <form class="form-horizontal ">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="Ticketnumber">Ticket Number:</label>
+                                        <div class="col-sm-12">
+                                            <input type="Ticketnumber" class="form-control" id="Ticketnumber"
+                                                placeholder="Enter Ticketnumber" name="Ticketnumber">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="pwd">Seat Number:</label>
+                                        <div class="col-sm-12">
+                                            <input type="Seatnumber" class="form-control" id="pwd"
+                                                placeholder="Enter Seatnumber" name="pwd">
+                                            <p class=" font-italic text-muted"
+                                                style="font-size: 0.75rem; margin-top: 0.5%;">
+                                                *Two ticket number should be separated by comma
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12 justify-content-md-around">
+                                            <button type="button" class="btn btn-danger">Print Ticket</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+
+                        <!-- cancel -->
+                        <div id="cancel" role="tabpanel" aria-labelledby="cancel-tab"
+                            class="tab-pane fade px-md-4 py-5 animated fadeIn">
+                            <div id="print" role="tabpanel" aria-labelledby="print-tab"
+                                class="tab-pane fade show active">
+                                <h3 class="text-center ">Enter Your Ticket Details</h3>
+                                <div class="form-check">
+                                    <form class="form-horizontal ">
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="Ticketnumber">Ticket
+                                                Number:</label>
+                                            <div class="col-sm-12">
+                                                <input type="Ticketnumber" class="form-control" id="Ticketnumber"
+                                                    placeholder="Enter Ticketnumber" name="Ticketnumber">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="pwd">Seat Number:</label>
+                                            <div class="col-sm-12">
+                                                <input type="Seatnumber" class="form-control" id="pwd"
+                                                    placeholder="Enter Seatnumber" name="pwd">
+                                                <p class=" font-italic text-muted"
+                                                    style="font-size: 0.75rem; margin-top: 0.5%;">
+                                                    *Two ticket number should be separated by comma
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-12 justify-content-md-around">
+                                                <button type="button" class="btn btn-danger">Cancel Ticket</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End rounded tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- footer -->
+    <div class="foot">
+        <p class="text-center">
+            © 2020 MilePartner . All Rights Reserved
+        </p>
+    </div>
+
+    <!-- scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+    </script>
+</body>
+
+</html>
