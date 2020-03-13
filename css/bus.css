@@ -22,7 +22,10 @@ nav {
 }
 
 /* tabs */
-
+/* .my_btn{
+    background: linear-gradient(to right, rgb(36, 141, 202), rgb(56, 63, 197));
+    text-align: center !important;
+} */
 @media (min-width: 576px) {
     .rounded-nav {
         border-radius: 50rem !important;
@@ -95,4 +98,10 @@ nav {
     padding: 1%;
     border-radius: 15px;
     font-size: 1.25rem;
+}
+
+@media (max-width: 576px) {
+    .date input {
+        margin-top: 25px;
+    }
 }
