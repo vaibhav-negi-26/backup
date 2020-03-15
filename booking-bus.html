@@ -17,8 +17,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/materialize.css">
     <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="css/mob.css">
-    <link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/mob.css">
 </head>
 
 <body ng-app="">
@@ -42,6 +41,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
+						<form> <input type="text" name="" class="autocomplete-content" id="src-city"></form>
 					<div class="v2-ho-se-ri">
 						<h5>LIFE IS ALL ABOUT JOURNEY</h5>
 						<h1>Bus Ticket Booking made easier!</h1>
@@ -73,23 +73,18 @@
 					</div>						
 					</div>
 					<div class="col-md-6">
-					<div class="">
-						<form class="contact__form v2-search-form" method="post">
+						<form class="contact__form v2-search-form">
 							<div class="row">
-								<div class="input-field col s12">
+								<!-- <div class="input-field col s12">
 									<input type="text" id="src-city" class="autocomplete" name="source">
 									<label for="src-city">Travelling From</label>
-								</div>
+								</div> -->
 								<div class="input-field col s12">
 									<input type="text" id="dst-city" class="autocomplete" name="destination">
 									<label for="dst-city">Travelling To</label>
 								</div>
 							</div>
 							<div class="row">
-								<!-- <div class="input-field col s12">
-									<input type="text" id="from" name="arrivaldate">
-									<label for="from">Arrival Date</label>
-								</div> -->
 								<div class="input-field col s12">
 									<input type="text" id="to" name="departuredate">
 									<label for="to">Departure Date</label>
@@ -101,8 +96,7 @@
 									<!-- <input type="submit" value="search buses" class="waves-effect waves-light tourz-sear-btn v2-ser-btn"> -->
 								</div>
 							</div>
-						</form>
-					</div>						
+						</form>					
 					</div>					
 				</div>
 			</div>
@@ -901,13 +895,37 @@
 		</div>
 	</section>
 	<!--========= Scripts ===========-->
-	<script src="js/jquery-latest.min.js"></script>
-	<script src="js/jquery-ui.js"></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script src="js/materialize.min.js"></script>
 	<script src="js/mail.js"></script>
-	<script src="js/custom.js"></script>
+	<script src="js/custom.js"></script>	
+
+	<script>
+		$('#to').datepicker({
+			dateFormat: 'yy-mm-dd' 
+		});
+		var list;
+		$('#src-city').prop("disabled", true);
+		$.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/bus/getStations',
+            success: function (data) {
+				list = data.stationList;
+				$('#src-city').prop("disabled", false);
+                console.log(list)
+                $('#src-city').autocomplete({
+                minLength: 1,
+                source: function (request, response) {
+                    var results = $.ui.autocomplete.filter(list, request.term);
+                    response(results.slice(0, 10));
+                }
+            });
+            }
+        })
+	</script>
 </body>
 
 </html>

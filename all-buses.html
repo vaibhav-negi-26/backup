@@ -11,7 +11,47 @@
 	<!-- FONT-AWESOME ICON CSS -->
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!--== ALL CSS FILES ==-->
+	<link rel="stylesheet" href="css/bus.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/datepicker.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<style>
+		/* loader */
+		.wrapper{
+			width: 100%;
+			height: 80vh;
+			margin:0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.wrapper h1{
+			text-shadow:1px 1px crimson;
+			font-size: 3.5rem;
+		}
+		.loader {
+			border: 16px solid #3498db;
+			border-radius: 50%;
+			border-top: 16px solid crimson;
+			width: 120px;
+			height: 120px;
+			-webkit-animation: spin 2s linear infinite; /* Safari */
+			animation: spin 2s linear infinite;
+		}
+		
+		/* Safari */
+		@-webkit-keyframes spin {
+			0% { -webkit-transform: rotate(0deg); }
+			100% { -webkit-transform: rotate(360deg); }
+		}
+		
+		@keyframes spin {
+			0% { transform: rotate(0deg); }
+			100% { transform: rotate(360deg); }
+		}
+
+		/* moadal */
 		.form-elegant .font-small {
 			font-size: 0.8rem;
 		}
@@ -56,21 +96,17 @@
 			color: #2196f3 !important;
 			border-radius: 50px !important;
 		}
-		.md-form input{
+
+		.md-form input {
 			border: none;
 			border-bottom: 1px solid #2196f3 !important;
 			border-radius: 0px !important;
 			color: #2196f3 !important;
 		}
 	</style>
-	<link rel="stylesheet" href="css/bus.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/datepicker.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-
 </head>
 
-<body ng-app="">
+<body ng-app="myApp" ng-controller="myCtrl">
 	<!-- NAVBAR-->
 	<nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #ffffff !important;">
 		<div class="container">
@@ -92,11 +128,13 @@
 				</ul>
 			</div>
 		</div>
-	</nav>
-
+	</nav>		
 	<!-- Main content -->
 	<div class="container-fluid">
-		<div class="row p-2">
+		<div class="row wrapper" id="loader_part">
+			<div class="loader"></div>
+		</div>
+		<div class="row p-2" id="list_part">
 			<div class="col-md-9" style="padding-right: 0px !important;">
 				<!-- filter -->
 				<div class="container-fluid">
@@ -107,7 +145,8 @@
 						</div>
 						<div class="col-md-4">
 							<div class="input-field date">
-								<input type="text" class="px-5" id="to" name="departuredate" placeholder="Date">
+								<input type="text" class="px-5" id="to" name="departuredate"
+									placeholder="Date (yy-mm-dd)">
 								<label for="to"></label>
 							</div>
 						</div>
@@ -138,31 +177,33 @@
 						</ul>
 
 						<div id="myTabContent" class="tab-content">
+
 							<div id="private" role="tabpanel" aria-labelledby="private-tab"
 								class="tab-pane fade px-4 py-5 show active">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp">
+								<div class="row list-bus animated fadeInUp" ng-repeat="bus in buses">
+									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
 									</div>
 									<div class="col-md-3">
 										<p>
 											<b>
-												Classic Travels
+												{{bus.operatorName}}
 											</b>
 										</p>
 										<p>
-											A/C Sleeper (2+1)
+											{{bus.busType}}
 										</p>
 									</div>
 									<div class="col-md-3">
 										<p>
 											<span>
-												11:30 PM
+												{{bus.departureTime}}
 											</span>
 											<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
 											<span>
-												05:30 AM
+												{{bus.arrivalTime}}
 											</span>
 										</p>
 										<p style="color: #007bff; font-weight: 500;">
@@ -172,15 +213,27 @@
 									<div class="col-md-2">
 										<img src="images/icon/passenger.png" alt="passengericon">
 										<p>
-											<span>40</span> Seats
+											<span>{{bus.availableSeats}}</span> Seats
 										</p>
 									</div>
 									<div class="col-md-2">
-										<p style="font-size: 1.5rem;"><b>₹6,050</b></p>
-										<button id="seats" class="btn btn-info info-btn text-uppercase">View Seats</button>
+										<p style="font-size: 2rem;"><b>₹{{getFare(bus)}}</b></p>
+										<button id="seats" class="btn btn-info info-btn text-uppercase">View
+											Seats</button>
 									</div>
+
+									<!-- bus layout -->
+									<!-- <div class="col-md-12" style="border: 1px solid black;">
+										<h1>
+											bus layout
+										</h1>
+										<button id="sl" onclick="generateLayout()">Click me</button>
+										<div>
+										</div>
+									</div> -->
 								</div>
 							</div>
+
 							<div id="government" role="tabpanel" aria-labelledby="government-tab"
 								class="tab-pane fade px-4 py-5">
 								<!-- repreating element -->
@@ -224,6 +277,7 @@
 									</div>
 								</div>
 							</div>
+
 						</div>
 						<!-- End rounded tabs -->
 					</div>
@@ -265,12 +319,14 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-md-12">
-										<p class="lead">Amount <span class="lead font-weight-bold float-right">₹6,050</span></p>
+										<p class="lead">Amount <span
+												class="lead font-weight-bold float-right">₹6,050</span></p>
 									</div>
 									<div class="col-md-12">
 										<small class="text-muted">Taxes will be calculated during payment</small>
 									</div>
-									<input type="text" class="mt-2 form-control" id="cupon" aria-describedby="mobile" placeholder="Enter Coupon Code">
+									<input type="text" class="mt-2 form-control" id="cupon" aria-describedby="mobile"
+										placeholder="Enter Coupon Code">
 								</div>
 							</div>
 							<br>
@@ -279,6 +335,11 @@
 					</div>
 				</div>
 			</div>
+		</div>
+		<div class="row wrapper" id="Error_part">
+			<h1>
+				Sorry No buses on this route!
+			</h1>
 		</div>
 	</div>
 
@@ -290,7 +351,8 @@
 			<div class="modal-content form-elegant">
 				<!--Header-->
 				<div class="modal-header text-center">
-					<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong style="text-shadow: 2px 2px grey;font-size: 2.5rem;">Log
+					<h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong
+							style="text-shadow: 2px 2px grey;font-size: 2.5rem;">Log
 							In</strong></h3>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
@@ -304,7 +366,8 @@
 					</div>
 
 					<div class="md-form pb-3">
-						<input type="password" id="Form-pass1" class="form-control validate" placeholder="Your password">
+						<input type="password" id="Form-pass1" class="form-control validate"
+							placeholder="Your password">
 						<br>
 						<p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#"
 								class="blue-text ml-1">
@@ -357,19 +420,67 @@
 	<script src="js/angularjs.js"></script>
 	<script src="js/jquery-latest.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script>
-		$('#to').datepicker();
-		$(document).ready(function () {
-			$('#login_modal').click();
-			$("#detail_form").hide();
-		});
-		$('#seats').click(function () {
-			$("#detail_form").show();
-		})
-	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
 	</script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
+	</script>
+
+	<script>
+		// boilerplate fo page
+		$('#to').datepicker({
+			dateFormat: 'yy-mm-dd'
+		});
+		$(document).ready(function () {
+			$("#detail_form").hide();
+			$("#list_part").hide();
+			$("#Error_part").hide();
+		});
+		$('#seats').click(function () {
+			$("#detail_form").fadeIn();
+		})
+
+		// angular code
+		var app = angular.module("myApp", []);
+		app.controller("myCtrl", function ($scope, $http, $location) {
+			
+			// url extraction
+			var url = $location.absUrl().split('?')[1];
+			var para = url.split('&')
+			var sourceCity = para[0].split('=')[1];
+			var destinationCity =para[1].split('=')[1];
+			var doj =para[2].split('=')[1];
+			
+			var data;
+			
+			// call for bus list
+			$http.get("http://localhost:3000/api/bus/getAvailableBuses?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj="+doj)
+			.then(function (response) {
+				data = response.data.apiAvailableBuses;
+				if (data === null) {
+					$("#loader_part").fadeOut("slow");
+					$('#Error_part').fadeIn("slow");
+				} else {
+					$scope.buses = data;
+					$scope.getFare = function (bus) {
+						var one = bus.fare.split(',')
+						one[0] = parseInt(one[0]);
+						one[1] = parseInt(one[1]);
+						return Math.min(...one)
+					}
+					$("#loader_part").fadeOut("slow");
+
+					setTimeout(function () {
+						console.log("response came");
+						$('#list_part').fadeIn("fast");
+					}, 500);
+
+					// setTimeout(function () {
+					// 	console.log("login Pls");
+					// 	$('#login_modal').click();
+					// }, 10000);
+				}	
+			  })
+		})
 	</script>
 </body>
 

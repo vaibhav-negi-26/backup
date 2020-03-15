@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: grey;
+        }
+
+        .content {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        input {
+            padding: 20px 40px;
+            border-radius: 10px;
+            outline: none;
+            border: none;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: ease-in-out 0.25s;
+        }
+
+        input:hover {
+            background-color: lightblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <form>
+            <input type="text" name="" id="src-city" placeholder="Travelling To">
+            <br>
+            <input type="text" name="" id="dst-city" placeholder="Travelling From">
+            <br>
+            <input type="text" id="to" name="departuredate" placeholder="Destination">
+            <br>
+            <input type="button" value="SEARCH" id="search">
+        </form>
+    </div>
+
+    <!-- scipt -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script>
+        // boiler code for datepicker and suggestion list
+
+        $('#to').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $('#src-city').prop("disabled", true);
+        $('#dst-city').prop("disabled", true);
+        $('#to').prop("disabled", true);
+        $('#search').prop("disabled", true);
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:3000/api/bus/getStations',
+            success: function (data) {
+                list = data.stationList;
+                console.log(list);
+                $('#src-city').prop("disabled", false);
+                $('#dst-city').prop("disabled", false);
+                $('#to').prop("disabled", false);
+                $('#search').prop("disabled", false);
+                $('#src-city').autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        var results = $.ui.autocomplete.filter(list, request.term);
+                        response(results.slice(0, 10));
+                    }
+                });
+                $('#dst-city').autocomplete({
+                    minLength: 1,
+                    source: function (request, response) {
+                        var results = $.ui.autocomplete.filter(list, request.term);
+                        response(results.slice(0, 10));
+                    }
+                });
+            }
+        })
+
+        // post to next page
+        $('#search').click(function () {
+            var source = $('#src-city').val();
+            var destination = $('#dst-city').val();
+            var doj = $('#to').val();      
+            var url = "http://localhost/mile_partner/client/all-buses.html?sourceCity="+source+"&destinationCity="+destination+"&doj="+doj;
+            window.location.href = "http://localhost/mile_partner/client/all-buses.html?sourceCity="+source+"&destinationCity="+destination+"&doj="+doj;
+        })
+    </script>
+</body>
+
+</html>
