@@ -26,7 +26,16 @@
 			justify-content: center;
 			align-items: center;
 		}
-		.wrapper h1{
+		.wrapper2{
+			width: 100%;
+			height: 50vh;
+			margin:0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		.wrapper h1,.wrapper2 h1{
 			text-shadow:1px 1px crimson;
 			font-size: 3.5rem;
 		}
@@ -139,20 +148,23 @@
 				<!-- filter -->
 				<div class="container-fluid">
 					<div class="row text-center filter mt-3 animated fadeIn">
-						<div class="col-md-4">
-							<button type="button" class="btn btn-danger"> <i class="fa fa-arrow-left"
-									aria-hidden="true"></i> Prev. Day</button>
+						<div class="col-md-3 mb-2">
+							<button type="button" class="btn btn-danger" id="prev_btn"> 
+								<i class="fa fa-arrow-left" aria-hidden="true"></i> Prev. Day
+							</button>
 						</div>
-						<div class="col-md-4">
-							<div class="input-field date">
-								<input type="text" class="px-5" id="to" name="departuredate"
-									placeholder="Date (yy-mm-dd)">
-								<label for="to"></label>
+						<div class="col-md-6 mb-2">
+							<div class="input-group">
+								<input type="text" class="form-control" id="to" placeholder="Date (yy-mm-dd)" aria-label="Recipient's username" aria-describedby="basic-addon2">
+								<div class="input-group-append">
+									<button class="btn btn-info" id="to_btn" type="button">GO</button>
+								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<button type="button" class="btn btn-danger">Next Day <i class="fa fa-arrow-right"
-									aria-hidden="true"></i></button>
+						<div class="col-md-3">
+							<button type="button" class="btn btn-danger" id="next_btn">Next Day 
+								<i class="fa fa-arrow-right" aria-hidden="true"></i>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -181,7 +193,106 @@
 							<div id="private" role="tabpanel" aria-labelledby="private-tab"
 								class="tab-pane fade px-4 py-5 show active">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp" ng-repeat="bus in buses">
+								<div class="row list-bus animated fadeInUp" id="pri" ng-repeat="bus in priBus">
+									<!-- details -->
+									<div class="col-md-2 icon px-md-5">
+										<img src="images/icon/buses.png" alt="busicon">
+									</div>
+									<div class="col-md-3">
+										<p>
+											<b>
+												{{bus.operatorName}}
+											</b>
+										</p>
+										<p>
+											{{bus.busType}}
+										</p>
+									</div>
+									<div class="col-md-3">
+										<p>
+											<span>
+												{{bus.departureTime}}
+											</span>
+											<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
+											<span>
+												{{bus.arrivalTime}}
+											</span>
+										</p>
+										<button class="btn btn-outline-primary" ng-click="do_some()">
+											Boarding & Dropping point
+										</button>
+										<!-- <a class="bd_btn" style="color: #007bff; font-weight: 500;">
+											Boarding & Dropping point
+										</a> -->
+									</div>
+									<div class="col-md-2">
+										<img src="images/icon/passenger.png" alt="passengericon">
+										<p>
+											<span>{{bus.availableSeats}}</span> Seats
+										</p>
+									</div>
+									<div class="col-md-2">
+										<p style="font-size: 2rem;"><b>₹{{getFare(bus)}}</b></p>
+										<button id="seats" class="btn btn-info info-btn text-uppercase">
+											View Seats
+										</button>
+									</div>
+
+									<!-- tables for boarding and droping points -->
+									<div class="col-md-6 mt-4" ng-hide="tog" style="font-size: 1rem !important;">
+										<table class="table">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Timing</th>
+													<th scope="col">Points</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="point in bus.boardingPoints">
+													<td>{{point.time}}</td>
+													<td>{{point.location}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-6 mt-4" ng-hide="tog" style="font-size: 1rem !important;">
+										<table class="table">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Timing</th>
+													<th scope="col">Points</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="point in bus.boardingPoints">
+													<td>{{point.time}}</td>
+													<td>{{point.location}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+
+									<!-- bus layout -->
+									<!-- <div class="col-md-12" style="border: 1px solid black;">
+										<h1>
+											bus layout
+										</h1>
+										<button id="sl" onclick="generateLayout()">Click me</button>
+										<div>
+										</div>
+									</div> -->
+								</div>
+								<div class="row wrapper2" id="Error_pri">
+									<h1>
+										Sorry No Private buses on this route!
+									</h1>
+								</div>
+							</div>
+
+							<div id="government" role="tabpanel" aria-labelledby="government-tab"
+								class="tab-pane fade px-4 py-5">
+								<!-- repreating element -->
+								<div class="row list-bus animated fadeInUp" id="gov" ng-repeat="bus in govBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
@@ -232,49 +343,10 @@
 										</div>
 									</div> -->
 								</div>
-							</div>
-
-							<div id="government" role="tabpanel" aria-labelledby="government-tab"
-								class="tab-pane fade px-4 py-5">
-								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp">
-									<div class="col-md-2 icon px-md-5">
-										<img src="images/icon/buses.png" alt="busicon">
-									</div>
-									<div class="col-md-3">
-										<p>
-											<b>
-												Classic Travels
-											</b>
-										</p>
-										<p>
-											A/C Sleeper (2+1)
-										</p>
-									</div>
-									<div class="col-md-3">
-										<p>
-											<span>
-												11:30 PM
-											</span>
-											<i class="fa fa-arrow-right px-2" aria-hidden="true"></i>
-											<span>
-												05:30 AM
-											</span>
-										</p>
-										<p style="color: #007bff; font-weight: 500;">
-											Boarding & Dropping point
-										</p>
-									</div>
-									<div class="col-md-2">
-										<img src="images/icon/passenger.png" alt="passengericon">
-										<p>
-											<span>40</span> Seats
-										</p>
-									</div>
-									<div class="col-md-2">
-										<p><b>₹6,050</b></p>
-										<button class="btn btn-info info-btn text-uppercase">View Seats</button>
-									</div>
+								<div class="row wrapper2" id="Error_gov">
+									<h1>
+										Sorry No Government buses on this route!
+									</h1>
 								</div>
 							</div>
 
@@ -449,18 +521,44 @@
 			var sourceCity = para[0].split('=')[1];
 			var destinationCity =para[1].split('=')[1];
 			var doj =para[2].split('=')[1];
-			
+			$("#to").val(doj) //setting val of dateinput from query parameters
+
 			var data;
-			
+			var apiUrl = "http://localhost:3000/api/bus/getAvailableBuses?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj=";
+			var newUrl;
 			// call for bus list
-			$http.get("http://localhost:3000/api/bus/getAvailableBuses?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj="+doj)
+			$http.get(apiUrl+doj)
 			.then(function (response) {
 				data = response.data.apiAvailableBuses;
 				if (data === null) {
 					$("#loader_part").fadeOut("slow");
 					$('#Error_part').fadeIn("slow");
 				} else {
-					$scope.buses = data;
+					
+					$scope.priBus = []; //length 0 the no pri bus
+					$scope.govBus= []; //length 0 the no gov bus
+					$scope.tog = true;
+					// seperating private and gov buses
+					angular.forEach(data, function (value, key) { 
+		                if (!value.isRTC) {
+							$scope.priBus.push(value); 
+						}
+            		}); 
+					angular.forEach(data, function (value, key) { 
+		                if (value.isRTC) {
+							$scope.govBus.push(value); 
+						}
+            		}); 
+
+					// hiding no bus part and tables
+					if ($scope.priBus.length) {
+						$('#Error_pri').hide();
+					}
+					if ($scope.govBus.length) {
+						$('#Error_gov').hide();
+					}
+
+					// returns min fare
 					$scope.getFare = function (bus) {
 						var one = bus.fare.split(',')
 						one[0] = parseInt(one[0]);
@@ -470,16 +568,68 @@
 					$("#loader_part").fadeOut("slow");
 
 					setTimeout(function () {
-						console.log("response came");
+						console.log("response came and list shown");
 						$('#list_part').fadeIn("fast");
 					}, 500);
 
+					//login modal after 10sec of user serfing 
 					// setTimeout(function () {
 					// 	console.log("login Pls");
 					// 	$('#login_modal').click();
 					// }, 10000);
 				}	
 			  })
+
+			//   datechanged new url hit from mid calaender tab
+			$('#to_btn').click(function () {
+				let newDate = $('#to').val();
+				newUrl = $location.absUrl().split('?')[0]+"?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj="+newDate;
+				if (newDate.length == 10) {
+					window.location.href = newUrl;
+				}
+				else{
+					console.log("error in date")
+				}
+			})
+
+			// prev. day btn
+			$('#prev_btn').click(function () {	
+				var temp = doj.split("-");	
+				var add = parseInt(temp[2])-1;
+				let newDate = temp[0]+"-"+temp[1]+"-"+add 
+				newUrl = $location.absUrl().split('?')[0]+"?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj="+newDate;
+				if (newDate.length == 10) {
+					window.location.href = newUrl;
+				}
+				else{
+					console.log("error in date")
+				}
+			})
+			
+			// next day btn
+			$('#next_btn').click(function () {
+				var temp = doj.split("-");	
+				var add = parseInt(temp[2])+1;
+				let newDate = temp[0]+"-"+temp[1]+"-"+add 
+				newUrl = $location.absUrl().split('?')[0]+"?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj="+newDate;
+				if (newDate.length == 10) {
+					window.location.href = newUrl;
+				}
+				else{
+					console.log("error in date")
+				}
+			})
+
+			// toggle table droping and boarding points
+			$scope.do_some = function () {
+				if ($scope.tog) {
+					$scope.tog = false;
+				}
+				else{
+					$scope.tog = true;
+				}
+			}
+
 		})
 	</script>
 </body>
