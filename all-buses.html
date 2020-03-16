@@ -193,9 +193,10 @@
 							<div id="private" role="tabpanel" aria-labelledby="private-tab"
 								class="tab-pane fade px-4 py-5 show active">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp" id="pri" ng-repeat="bus in priBus">
+								<div class="row list-bus animated fadeInUp mb-5" id="pri" ng-repeat="bus in priBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
+										<p>{{$index}}</p>
 										<img src="images/icon/buses.png" alt="busicon">
 									</div>
 									<div class="col-md-3">
@@ -218,7 +219,7 @@
 												{{bus.arrivalTime}}
 											</span>
 										</p>
-										<button class="btn btn-outline-primary" ng-click="do_some()">
+										<button class="btn btn-outline-primary" ng-click="do_some($index)">
 											Boarding & Dropping point
 										</button>
 										<!-- <a class="bd_btn" style="color: #007bff; font-weight: 500;">
@@ -239,7 +240,7 @@
 									</div>
 
 									<!-- tables for boarding and droping points -->
-									<div class="col-md-6 mt-4" ng-hide="tog" style="font-size: 1rem !important;">
+									<div class="col-md-6 mt-4 animated fadeIn" id="div_{{$index}}" style="font-size: 1rem !important;display: none;">
 										<table class="table">
 											<thead class="thead-light">
 												<tr>
@@ -255,7 +256,7 @@
 											</tbody>
 										</table>
 									</div>
-									<div class="col-md-6 mt-4" ng-hide="tog" style="font-size: 1rem !important;">
+									<div class="col-md-6 mt-4 animated fadeIn" id="div__{{$index}}" style="font-size: 1rem !important;display: none;">
 										<table class="table">
 											<thead class="thead-light">
 												<tr>
@@ -537,7 +538,6 @@
 					
 					$scope.priBus = []; //length 0 the no pri bus
 					$scope.govBus= []; //length 0 the no gov bus
-					$scope.tog = true;
 					// seperating private and gov buses
 					angular.forEach(data, function (value, key) { 
 		                if (!value.isRTC) {
@@ -621,13 +621,11 @@
 			})
 
 			// toggle table droping and boarding points
-			$scope.do_some = function () {
-				if ($scope.tog) {
-					$scope.tog = false;
-				}
-				else{
-					$scope.tog = true;
-				}
+			$scope.do_some = function (i) {
+				var one = "#div_"+i;
+				var two = "#div__"+i;
+				$(one).toggle();
+				$(two).toggle();
 			}
 
 		})
