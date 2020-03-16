@@ -43,7 +43,7 @@ nav {
 .list-bus {
     padding: 2%;
     font-size: 1.25rem;
-    background-color: #f8f9fa;
+    background-color: #f8f9fa !important;
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
     margin-bottom: 2%;
 }

@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="css/animate.css">
 	<link rel="stylesheet" href="css/datepicker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/mycss.css">
 	<style>
 		/* loader */
 		.wrapper{
@@ -35,6 +36,14 @@
 			justify-content: center;
 			align-items: center;
 		}
+		.wrapper3{
+			width: 100%;
+			margin:0;
+			padding: 0;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
 		.wrapper h1,.wrapper2 h1{
 			text-shadow:1px 1px crimson;
 			font-size: 3.5rem;
@@ -43,8 +52,18 @@
 			border: 16px solid #3498db;
 			border-radius: 50%;
 			border-top: 16px solid crimson;
-			width: 120px;
-			height: 120px;
+			width: 100px;
+			height: 100px;
+			-webkit-animation: spin 2s linear infinite; /* Safari */
+			animation: spin 2s linear infinite;
+		}
+
+		.loader2 {
+			border: 8px solid #3498db;
+			border-radius: 50%;
+			border-top: 8px solid crimson;
+			width: 50px;
+			height: 50px;
 			-webkit-animation: spin 2s linear infinite; /* Safari */
 			animation: spin 2s linear infinite;
 		}
@@ -196,7 +215,6 @@
 								<div class="row list-bus animated fadeInUp mb-5" id="pri" ng-repeat="bus in priBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
-										<p>{{$index}}</p>
 										<img src="images/icon/buses.png" alt="busicon">
 									</div>
 									<div class="col-md-3">
@@ -234,7 +252,7 @@
 									</div>
 									<div class="col-md-2">
 										<p style="font-size: 2rem;"><b>₹{{getFare(bus)}}</b></p>
-										<button id="seats" class="btn btn-info info-btn text-uppercase">
+										<button id="seats" ng-click="layout($index,bus.inventoryType,bus.routeScheduleId,bus.cancellationPolicy)" class="btn btn-info info-btn text-uppercase">
 											View Seats
 										</button>
 									</div>
@@ -274,15 +292,57 @@
 									</div>
 
 									<!-- bus layout -->
-									<!-- <div class="col-md-12" style="border: 1px solid black;">
-										<h1>
-											bus layout
-										</h1>
-										<button id="sl" onclick="generateLayout()">Click me</button>
-										<div>
+									<div class="col-md-12 my-5 animated fadeIn" id="div_loader_{{$index}}" style="display: none;">
+										<div class="wrapper3">
+											<div class="loader2"></div>
 										</div>
+									</div>
+									<div class="col-md-4 my-5 animated fadeIn" id="bus_layout_info_{{$index}}" style="display: none;">
+										<ul style="list-style: none; padding: 0px !important; font-size: 1.25rem;">
+											<li><img src="images/bus_seat/available.png" alt="pic" style="width: 15px; height: 15px;"> <span style="margin-left: 10px ;">Available</span></li>
+											<li><img src="images/bus_seat/women.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Available for female</span></li>
+											<li><img src="images/bus_seat/booked.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Booked</span></li>
+											<li><img src="images/bus_seat/select.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Selected</span></li>
+											<li><img src="images/bus_seat/not_available.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Not Available</span></li>
+										</ul>
+										<!-- <hr> -->
+										<table class="table" style="font-size: 1rem !important;">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Cut off Time</th>
+													<th scope="col">Refund In Percentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in refund_list">
+													<td>{{x.cutoffTime}} hr</td>
+													<td>{{x.refundInPercentage}}%</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-8 my-5 animated fadeIn" id="bus_layout_{{$index}}" style="display: none;">
+									</div>
+									<!-- <div class="col-md-12 my-5 animated fadeIn" id="bus_layout_refund_{{$index}}" style="display: none;">
+										<table class="table" style="font-size: 1rem !important;">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">cutoffTime</th>
+													<th scope="col">refundInPercentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="point in bus.boardingPoints">
+													<td>{{point.time}}</td>
+													<td>{{point.location}}</td>
+												</tr>
+											</tbody>
+										</table>
 									</div> -->
+
 								</div>
+
+							<!-- error part pri. bus -->
 								<div class="row wrapper2" id="Error_pri">
 									<h1>
 										Sorry No Private buses on this route!
@@ -493,11 +553,11 @@
 	<script src="js/angularjs.js"></script>
 	<script src="js/jquery-latest.min.js"></script>
 	<script src="js/jquery-ui.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js">
-	</script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js">
-	</script>
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
+	<script src="js/bus-layout.js"></script>
+	<script src="js/generator.js"></script>
 	<script>
 		// boilerplate fo page
 		$('#to').datepicker({
@@ -577,6 +637,7 @@
 					// 	console.log("login Pls");
 					// 	$('#login_modal').click();
 					// }, 10000);
+
 				}	
 			  })
 
@@ -626,6 +687,92 @@
 				var two = "#div__"+i;
 				$(one).toggle();
 				$(two).toggle();
+			}
+
+			// refund calculation
+			var refund_calc = function (str) {
+				var obj = JSON.parse(str);
+				$scope.refund_list = obj;
+				// console.log(typeof(obj));
+				// console.log(obj)
+			}
+
+			// bus layout call
+			$scope.layout = function (i,iT,rsH,str) {
+				refund_calc(str);
+				var apiUrl2 = "http://localhost:3000/api/bus/getBusLayout?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj=";
+				if(doj.length > 10)
+				{
+					var temp = doj.split('#')[0];
+					let loader = "#div_loader_"+i
+					let info = "#bus_layout_info_"+i
+					let layout = "#bus_layout_"+i
+					let refund = "#bus_layout_refund_"+i
+
+					// console.log(apiUrl2+temp+"&inventoryType="+iT+"&routeScheduleId="+rsH);
+
+					// managing layout hide and show along with api call
+					if ($(layout).is(":visible")) 
+					{
+						$(layout).toggle();
+						$(info).toggle();
+						$(refund).toggle();
+					} else {	
+							$(loader).toggle();				
+							// calling layout API
+							$http.get(apiUrl2+temp+"&inventoryType="+iT+"&routeScheduleId="+rsH)
+								.then(function (response) {
+									$(loader).toggle();
+									var seats = response.data.seats
+									var seatLayout=checkZ(seats,rsH);
+									$(layout).html(" ");
+									$(layout).append(seatLayout);
+
+									$(layout).toggle();
+									$(info).toggle();
+									$(refund).toggle();
+
+									console.log("layout came and displayed")
+								})
+					}
+					
+				}
+				else{
+					// console.log(apiUrl2+doj+"&inventoryType="+iT+"&routeScheduleId="+rsH);
+
+					let loader = "#div_loader_"+i
+					let info = "#bus_layout_info_"+i
+					let layout = "#bus_layout_"+i
+					let refund = "#bus_layout_refund_"+i
+					// managing layout hide and show along with api call
+
+					if ($(layout).is(":visible")) 
+					{
+						$(layout).toggle();
+						$(info).toggle();
+						$(refund).toggle();
+						
+					} else {
+
+						$(loader).toggle();
+						// calling layout API
+						$http.get(apiUrl2+doj+"&inventoryType="+iT+"&routeScheduleId="+rsH)
+							.then(function (response) {
+								$(loader).toggle();
+								var seats = response.data.seats
+								var seatLayout=checkZ(seats,rsH);
+								$(layout).html(" ");
+								$(layout).append(seatLayout);
+
+								$(layout).toggle();
+								$(info).toggle();
+								$(refund).toggle();
+
+								console.log("layout came and displayed")
+							})
+					}
+
+				}
 			}
 
 		})

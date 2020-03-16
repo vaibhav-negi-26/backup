@@ -1,0 +1,153 @@
+.seat{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/7.png);
+}
+.seat-avail{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/6.png);
+}
+.seat-occupied{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/8.png);
+}
+.seat-occupied-female{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/4.png);
+}
+.seat-female{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/5.png);
+}
+.seat-selected{
+    width: 24px;
+    height: 24px;
+    background-image: url(../images/icons/9.png);
+}
+.horizontal-seat{
+    width: 50px;
+    height: 24px;
+    background-image: url(../images/icons/14.png);
+}
+.horizontal-seat-avail{
+    width: 50px;
+    height: 24px;
+    background-image: url(../images/icons/13.png);
+}
+.horizontal-seat-occupied{
+    width: 50px;
+    height: 24px;
+    background-image: url(../images/icons/14.png);
+}
+.horizontal-seat-female{
+    width: 50px;
+    height: 24px;
+    background-image: url(../images/icons/12.png);
+}
+.horizontal-seat-selected{
+    width: 50px;
+    height: 24px;
+    background-image: url(../images/icons/15.png);
+}
+.vertical-seat{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/17.png);
+}
+.vertical-seat-avail{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/16.png);
+}
+.vertical-seat-occupied{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/19.png);
+}
+.vertical-seat-female{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/20.png);
+}
+.vertical-seat-booked{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/18.png);
+}
+.driver-seat{
+    width: 24px;
+    height: 50px;
+    background-image: url(../images/icons/3.png);
+}
+.lower{
+    width: 20px;
+    height: 90px;
+    background-image: url(../images/icons/21.png);
+}
+.upper{
+    width: 20px;
+    height: 90px;
+    background-image: url(../images/icons/22.png);
+}
+.extra{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.lg-seat-avail{
+    background-color: #00a651;
+}
+.lg-lady-seat-avail{
+    background-color: #d64e89;
+}
+.lg-seat-booked{
+    background-color: #231f20;
+}
+.lg-seat-selected{
+    background-color: #ef402a;
+}
+.lg-seat-not-avail{
+    background-color: #a7a9ac;
+}
+.round{
+    width: 15px;
+    height:15px;
+    border-radius: 5px;
+    background-position: center;
+}
+.extra2{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.right-container{
+    margin: 24px;
+}
+.viewseat-div{
+    padding: 16px;
+}
+.vcenter{
+    display: flex;
+    align-items: center;
+}
+
+.margin-24{
+    margin: 24px;
+}
+.rpad{
+    padding-right: 5px;
+}
+.rpad{
+    padding-left: 5px;
+}
+.margin-16{
+    margin: 16px;
+}
+
