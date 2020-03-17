@@ -17,6 +17,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/mycss.css">
 	<style>
+		html {
+  			scroll-behavior: smooth;
+		}
 		/* loader */
 		.wrapper{
 			width: 100%;
@@ -188,7 +191,7 @@
 					</div>
 				</div>
 				<!-- filter end -->
-				<div class="pt-4 pb-5 wow fadeInUp" data-wow-duration="0.7s">
+				<div class="pt-4 wow fadeInUp" data-wow-duration="0.7s">
 					<div class=" rounded shadow m-2">
 						<!-- Rounded tabs -->
 						<ul id="myTab" role="tablist"
@@ -283,7 +286,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<tr ng-repeat="point in bus.boardingPoints">
+												<tr ng-repeat="point in bus.droppingPoints">
 													<td>{{point.time}}</td>
 													<td>{{point.location}}</td>
 												</tr>
@@ -323,22 +326,10 @@
 									</div>
 									<div class="col-md-8 my-5 animated fadeIn" id="bus_layout_{{$index}}" style="display: none;">
 									</div>
-									<!-- <div class="col-md-12 my-5 animated fadeIn" id="bus_layout_refund_{{$index}}" style="display: none;">
-										<table class="table" style="font-size: 1rem !important;">
-											<thead class="thead-light">
-												<tr>
-													<th scope="col">cutoffTime</th>
-													<th scope="col">refundInPercentage</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr ng-repeat="point in bus.boardingPoints">
-													<td>{{point.time}}</td>
-													<td>{{point.location}}</td>
-												</tr>
-											</tbody>
-										</table>
-									</div> -->
+									<!-- button for proceed -->
+									<div class="col-md-12 animated fadeIn" id="bus_layout_proceed_{{$index}}" style="display: none;">
+										<a class="btn btn-success float-right text-light" id="proceed_to_form" ng-click="bus_form($index,bus)">PROCEED</a>
+									</div>
 
 								</div>
 
@@ -417,53 +408,78 @@
 				</div>
 			</div>
 
-			<div class="col-md-3 px-3 animated slideInRight">
-				<div class="jumbotron jumbotron-fluid" id="detail_form">
+			<!-- form to fill -->
+			<div class="col-md-3 px-3 animated slideInRight mt-md-5" style="display: none;"  id="detail_form">
+				<h3 class="text-center text-uppercase"><u>Enter Details</u></h3>
+				<div class="jumbotron jumbotron-fluid" >
 					<div class="container">
 						<form>
-							<div class="form-group font-weight-bold">
+							<!-- repeating elements -->
+
+							<div class="form-group font-weight-bold" ng-repeat="person in persons">
+								<h6 class="text-bold"><b><u>Passenger No : {{$index+1}}</u></b></h6>
+								<br>
+								<!-- name -->
 								<label for="name">Name</label>
-								<input type="text" class="form-control" id="name" aria-describedby="name"
+								<input type="text" class="form-control" id="name_{{$index}}" aria-describedby="name"
 									placeholder="Enter Full Name">
+								<br>
+								<!-- age -->
+								<label for="age">Age</label>
+								<input type="number" class="form-control" id="age_{{$index}}" aria-describedby="age"
+									placeholder="Enter Age">
+								<br>
+								<!-- gender -->
+								<label for="boardingpoint">Gender</label>
+								<select id="gender_{{$index}}" class="form-control">
+									<option selected>Choose...</option>
+									<option>Male</option>
+									<option>Female</option>
+									<option>Other</option>
+								</select>
+								<hr>
 							</div>
-							<div class="form-group font-weight-bold">
-								<label for="mobile">Mobile</label>
-								<input type="number" class="form-control" id="mobile" aria-describedby="mobile"
-									placeholder="Enter Mobile Number">
-								<!-- <small id="mobile" class="form-text text-muted">We'll never share your email with
-									anyone else.</small> -->
-							</div>
+
+							<!-- bording and droping points -->
 							<div class="form-group font-weight-bold">
 								<label for="boardingpoint">Boarding point</label>
 								<select id="boardingpoint" class="form-control">
-									<option selected>Choose...</option>
-									<option>...</option>
+									<option selected></option>
+									<option ng-repeat="x in that_bus.boardingPoints">{{x.location}}</option>
 								</select>
 							</div>
 							<div class="form-group font-weight-bold">
 								<label for="droppingpoint">Dropping point</label>
 								<select id="droppingpoint" class="form-control">
-									<option selected>Choose...</option>
-									<option>...</option>
+									<option selected></option>
+									<!-- change here to droping its bording for test period -->
+									<option ng-repeat="x in that_bus.boardingPoints">{{x.location}}</option> 
 								</select>
 							</div>
 							<hr>
+							<!-- Fare details -->
 							<p><b>Fare Deatils</b></p>
 							<div class="container-fluid">
 								<div class="row">
+
 									<div class="col-md-12">
 										<p class="lead">Amount <span
 												class="lead font-weight-bold float-right">₹6,050</span></p>
 									</div>
 									<div class="col-md-12">
 										<small class="text-muted">Taxes will be calculated during payment</small>
+									</div>		
+
+								</div>
+								<div class="input-group my-2">
+									<input type="text" class="form-control" placeholder="Enter Coupon Code">
+									<div class="input-group-append">
+									  <button class="btn btn-primary">Apply</button>
 									</div>
-									<input type="text" class="mt-2 form-control" id="cupon" aria-describedby="mobile"
-										placeholder="Enter Coupon Code">
 								</div>
 							</div>
 							<br>
-							<button class="btn btn-success text-uppercase btn-block">Proceed to Payment</button>
+							<button type="submit" class="btn btn-success text-uppercase btn-block" ng-click="obj_making()">Proceed to Payment</button>
 						</form>
 					</div>
 				</div>
@@ -558,21 +574,21 @@
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
 	<script src="js/bus-layout.js"></script>
 	<script src="js/generator.js"></script>
+
 	<script>
 		// boilerplate fo page
 		$('#to').datepicker({
 			dateFormat: 'yy-mm-dd'
 		});
 		$(document).ready(function () {
-			$("#detail_form").hide();
 			$("#list_part").hide();
 			$("#Error_part").hide();
 		});
-		$('#seats').click(function () {
-			$("#detail_form").fadeIn();
-		})
+		// $('#seats').click(function () {
+		// 	$("#detail_form").fadeIn();
+		// })
 
-		// angular code
+		// angular code starts
 		var app = angular.module("myApp", []);
 		app.controller("myCtrl", function ($scope, $http, $location) {
 			
@@ -707,7 +723,7 @@
 					let loader = "#div_loader_"+i
 					let info = "#bus_layout_info_"+i
 					let layout = "#bus_layout_"+i
-					let refund = "#bus_layout_refund_"+i
+					let proceed = "#bus_layout_proceed_"+i
 
 					// console.log(apiUrl2+temp+"&inventoryType="+iT+"&routeScheduleId="+rsH);
 
@@ -716,7 +732,7 @@
 					{
 						$(layout).toggle();
 						$(info).toggle();
-						$(refund).toggle();
+						$(proceed).toggle();
 					} else {	
 							$(loader).toggle();				
 							// calling layout API
@@ -730,7 +746,7 @@
 
 									$(layout).toggle();
 									$(info).toggle();
-									$(refund).toggle();
+									$(proceed).toggle();
 
 									console.log("layout came and displayed")
 								})
@@ -743,14 +759,14 @@
 					let loader = "#div_loader_"+i
 					let info = "#bus_layout_info_"+i
 					let layout = "#bus_layout_"+i
-					let refund = "#bus_layout_refund_"+i
+					let proceed = "#bus_layout_proceed_"+i
 					// managing layout hide and show along with api call
 
 					if ($(layout).is(":visible")) 
 					{
 						$(layout).toggle();
 						$(info).toggle();
-						$(refund).toggle();
+						$(proceed).toggle();
 						
 					} else {
 
@@ -766,7 +782,7 @@
 
 								$(layout).toggle();
 								$(info).toggle();
-								$(refund).toggle();
+								$(proceed).toggle();
 
 								console.log("layout came and displayed")
 							})
@@ -775,7 +791,60 @@
 				}
 			}
 
+
+			// bus proceed form 
+			$scope.bus_form = function (i,that_bus) {
+				$scope.persons = bookedSeats; //total seats
+				$scope.that_bus = that_bus; // for borading and droping points
+				// console.log($scope.persons)
+				
+				if ($scope.persons.length == 0) {
+					return alert("please select a seat");
+				}
+
+				// form showing
+				if ($("#detail_form").is(":visible")) {
+					$("#detail_form").fadeOut("fast");
+				}
+				else{
+					$("#detail_form").toggle();
+				}
+			}
+
+			// obj making
+			$scope.obj_making = function () {
+				var num_passenger = bookedSeats.length;
+				var obj = {
+					boardingPoints: $('#boardingpoint').val(),
+					droppingPoints: $('#droppingpoint').val(),
+					seatInfo : [],
+					state: "delhi",
+					country: "india"
+				};
+				for (let i = 0; i < num_passenger; i++) {
+					var n = "#name_"+i;
+					var a = "#age_"+i;
+					var g = "#gender_"+i;
+					var s = bookedSeats[i];
+					var temp = {
+						name : $(n).val(),
+						age: $(n).val(),
+						gender: $(n).val(),
+						seatId : s
+					};
+					obj.seatInfo.push(temp)
+				}
+				if (obj.boardingPoints.length != 0 && obj.droppingPoints.length != 0 && obj.seatInfo.length != 0 && obj.state.length != 0 && obj.country.length != 0) {
+					console.log(obj)
+				}
+				else{
+					alert("fill complete form")
+				}
+			}
+
+
 		})
+		// angular code ends
 	</script>
 </body>
 

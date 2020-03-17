@@ -465,8 +465,7 @@ function addelement(sno, fare, opservicecharge, ladiesseat, actype,ladyseat) {
     //         console.log(String(bookedSeats[i].replace(globalBusId)));
     //     }
     // }
-    console.log(bookedSeats);
-    
+    console.log(bookedSeats);    
 }
 
 function addSeat(seatid){
