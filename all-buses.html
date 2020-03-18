@@ -16,10 +16,8 @@
 	<link rel="stylesheet" href="css/datepicker.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/mycss.css">
+	<link rel="stylesheet" href="css/flashy.min.css">
 	<style>
-		html {
-  			scroll-behavior: smooth;
-		}
 		/* loader */
 		.wrapper{
 			width: 100%;
@@ -167,6 +165,7 @@
 		</div>
 		<div class="row p-2" id="list_part">
 			<div class="col-md-9" style="padding-right: 0px !important;">
+
 				<!-- filter -->
 				<div class="container-fluid">
 					<div class="row text-center filter mt-3 animated fadeIn">
@@ -215,7 +214,7 @@
 							<div id="private" role="tabpanel" aria-labelledby="private-tab"
 								class="tab-pane fade px-4 py-5 show active">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp mb-5" id="pri" ng-repeat="bus in priBus">
+								<div class="row list-bus animated fadeInUp mb-4" id="pri" ng-repeat="bus in priBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
@@ -344,7 +343,7 @@
 							<div id="government" role="tabpanel" aria-labelledby="government-tab"
 								class="tab-pane fade px-4 py-5">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp" id="gov" ng-repeat="bus in govBus">
+								<div class="row list-bus animated fadeInUp mb-4" id="pri" ng-repeat="bus in govBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
@@ -369,9 +368,12 @@
 												{{bus.arrivalTime}}
 											</span>
 										</p>
-										<p style="color: #007bff; font-weight: 500;">
+										<button class="btn btn-outline-primary" ng-click="do_some_2_($index)">
 											Boarding & Dropping point
-										</p>
+										</button>
+										<!-- <a class="bd_btn" style="color: #007bff; font-weight: 500;">
+											Boarding & Dropping point
+										</a> -->
 									</div>
 									<div class="col-md-2">
 										<img src="images/icon/passenger.png" alt="passengericon">
@@ -381,20 +383,85 @@
 									</div>
 									<div class="col-md-2">
 										<p style="font-size: 2rem;"><b>₹{{getFare(bus)}}</b></p>
-										<button id="seats" class="btn btn-info info-btn text-uppercase">View
-											Seats</button>
+										<button id="seats_2" ng-click="layout_2($index,bus.inventoryType,bus.routeScheduleId,bus.cancellationPolicy)" class="btn btn-info info-btn text-uppercase">
+											View Seats
+										</button>
+									</div>
+
+									<!-- tables for boarding and droping points -->
+									<div class="col-md-6 mt-4 animated fadeIn" id="div_2_{{$index}}" style="font-size: 1rem !important;display: none;">
+										<table class="table">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Timing</th>
+													<th scope="col">Points</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="point in bus.boardingPoints">
+													<td>{{point.time}}</td>
+													<td>{{point.location}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-6 mt-4 animated fadeIn" id="div__2_{{$index}}" style="font-size: 1rem !important;display: none;">
+										<table class="table">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Timing</th>
+													<th scope="col">Points</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="point in bus.droppingPoints">
+													<td>{{point.time}}</td>
+													<td>{{point.location}}</td>
+												</tr>
+											</tbody>
+										</table>
 									</div>
 
 									<!-- bus layout -->
-									<!-- <div class="col-md-12" style="border: 1px solid black;">
-										<h1>
-											bus layout
-										</h1>
-										<button id="sl" onclick="generateLayout()">Click me</button>
-										<div>
+									<div class="col-md-12 my-5 animated fadeIn" id="div_loader_2_{{$index}}" style="display: none;">
+										<div class="wrapper3">
+											<div class="loader2"></div>
 										</div>
-									</div> -->
+									</div>
+									<div class="col-md-4 my-5 animated fadeIn" id="bus_layout_info_2_{{$index}}" style="display: none;">
+										<ul style="list-style: none; padding: 0px !important; font-size: 1.25rem;">
+											<li><img src="images/bus_seat/available.png" alt="pic" style="width: 15px; height: 15px;"> <span style="margin-left: 10px ;">Available</span></li>
+											<li><img src="images/bus_seat/women.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Available for female</span></li>
+											<li><img src="images/bus_seat/booked.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Booked</span></li>
+											<li><img src="images/bus_seat/select.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Selected</span></li>
+											<li><img src="images/bus_seat/not_available.png" alt="pic" style="width: 15px; height: 15px;"><span style="margin-left: 10px ;">Not Available</span></li>
+										</ul>
+										<!-- <hr> -->
+										<table class="table" style="font-size: 1rem !important;">
+											<thead class="thead-light">
+												<tr>
+													<th scope="col">Cut off Time</th>
+													<th scope="col">Refund In Percentage</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr ng-repeat="x in refund_list">
+													<td>{{x.cutoffTime}} hr</td>
+													<td>{{x.refundInPercentage}}%</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<div class="col-md-8 my-5 animated fadeIn" id="bus_layout_2_{{$index}}" style="display: none;">
+									</div>
+									<!-- button for proceed -->
+									<div class="col-md-12 animated fadeIn" id="bus_layout_proceed_2_{{$index}}" style="display: none;">
+										<!-- proceed btn -->
+										<a class="btn btn-success float-right text-light" id="proceed_to_form_2" ng-click="bus_form_2($index,bus)">PROCEED</a>
+									</div>
 								</div>
+
+								<!-- error gov. bus -->
 								<div class="row wrapper2" id="Error_gov">
 									<h1>
 										Sorry No Government buses on this route!
@@ -409,9 +476,8 @@
 			</div>
 
 			<!-- form to fill -->
-			<div class="col-md-3 px-3 animated slideInRight mt-md-5" style="display: none;"  id="detail_form">
-				<h3 class="text-center text-uppercase"><u>Enter Details</u></h3>
-				<div class="jumbotron jumbotron-fluid" >
+			<div class="col-md-3 px-3 mt-md-5 animated slideInRight" id="detail_form" style="display: none;">
+				<div class="jumbotron jumbotron-fluid">
 					<div class="container">
 						<form>
 							<!-- repeating elements -->
@@ -574,6 +640,8 @@
 	<script src = "https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" ></script>
 	<script src="js/bus-layout.js"></script>
 	<script src="js/generator.js"></script>
+	<script src="js/flashy.min.js"></script>
+
 
 	<script>
 		// boilerplate fo page
@@ -621,7 +689,7 @@
 						}
             		}); 
 					angular.forEach(data, function (value, key) { 
-		                if (value.isRTC) {
+		                if (!value.isRTC) {
 							$scope.govBus.push(value); 
 						}
             		}); 
@@ -701,6 +769,12 @@
 			$scope.do_some = function (i) {
 				var one = "#div_"+i;
 				var two = "#div__"+i;
+				$(one).toggle();
+				$(two).toggle();
+			}
+			$scope.do_some_2_ = function (i) {
+				var one = "#div_2_"+i;
+				var two = "#div__2_"+i;
 				$(one).toggle();
 				$(two).toggle();
 			}
@@ -791,6 +865,82 @@
 				}
 			}
 
+			$scope.layout_2 = function (i,iT,rsH,str) {
+				refund_calc(str);
+				var apiUrl2 = "http://localhost:3000/api/bus/getBusLayout?sourceCity="+sourceCity+"&destinationCity="+destinationCity+"&doj=";
+				if(doj.length > 10)
+				{
+					var temp = doj.split('#')[0];
+					let loader = "#div_loader_2_"+i
+					let info = "#bus_layout_info_2_"+i
+					let layout = "#bus_layout_2_"+i
+					let proceed = "#bus_layout_proceed_2_"+i
+
+					// console.log(apiUrl2+temp+"&inventoryType="+iT+"&routeScheduleId="+rsH);
+
+					// managing layout hide and show along with api call
+					if ($(layout).is(":visible")) 
+					{
+						$(layout).toggle();
+						$(info).toggle();
+						$(proceed).toggle();
+					} else {	
+							$(loader).toggle();				
+							// calling layout API
+							$http.get(apiUrl2+temp+"&inventoryType="+iT+"&routeScheduleId="+rsH)
+								.then(function (response) {
+									$(loader).toggle();
+									var seats = response.data.seats
+									var seatLayout=checkZ(seats,rsH);
+									$(layout).html(" ");
+									$(layout).append(seatLayout);
+
+									$(layout).toggle();
+									$(info).toggle();
+									$(proceed).toggle();
+
+									console.log("layout came and displayed")
+								})
+					}
+					
+				}
+				else{
+					// console.log(apiUrl2+doj+"&inventoryType="+iT+"&routeScheduleId="+rsH);
+
+					let loader = "#div_loader_2_"+i
+					let info = "#bus_layout_info_2_"+i
+					let layout = "#bus_layout_2_"+i
+					let proceed = "#bus_layout_proceed_2_"+i
+					// managing layout hide and show along with api call
+
+					if ($(layout).is(":visible")) 
+					{
+						$(layout).toggle();
+						$(info).toggle();
+						$(proceed).toggle();
+						
+					} else {
+
+						$(loader).toggle();
+						// calling layout API
+						$http.get(apiUrl2+doj+"&inventoryType="+iT+"&routeScheduleId="+rsH)
+							.then(function (response) {
+								$(loader).toggle();
+								var seats = response.data.seats
+								var seatLayout=checkZ(seats,rsH);
+								$(layout).html(" ");
+								$(layout).append(seatLayout);
+
+								$(layout).toggle();
+								$(info).toggle();
+								$(proceed).toggle();
+
+								console.log("layout came and displayed")
+							})
+					}
+
+				}
+			}
 
 			// bus proceed form 
 			$scope.bus_form = function (i,that_bus) {
@@ -798,8 +948,76 @@
 				$scope.that_bus = that_bus; // for borading and droping points
 				// console.log($scope.persons)
 				
+				var width = $(window).width();
+				// console.log(width);
+				
 				if ($scope.persons.length == 0) {
-					return alert("please select a seat");
+					flashy("Please Select a Seat",{
+					timeout: 3000
+					});
+					return;
+				}
+
+				if (width <= 480) {
+					flashy('Please scroll to Bottom to fill the form.',{
+						stop : true,
+						type : "flashy__warning"
+					});
+				}
+				else{
+					flashy('Please scroll to top to fill the form.',{
+  					stop : true,
+					type : "flashy__warning"
+				});
+				}
+
+				// form showing
+				if ($("#detail_form").is(":visible")) {
+					$("#detail_form").fadeOut("fast");
+				}
+				else{
+					$("#detail_form").toggle();
+				}
+			}
+			
+			$scope.bus_form_2 = function (i,that_bus) {
+				$scope.persons = bookedSeats; //total seats
+				$scope.that_bus = that_bus; // for borading and droping points
+				// console.log($scope.persons)
+				
+				var width = $(window).width();
+				// console.log(width);
+				
+				if ($scope.persons.length == 0) {
+					flashy("Please Select a Seat",{
+					timeout: 3000
+					});
+					return;
+				}
+
+				if (width <= 480) {
+					flashy('Please scroll to Bottom to fill the form.',{
+						timeout: 3000,
+						type : "flashy__warning"
+					});
+					setTimeout(() => {
+						flashy('For Government Buses Ticket Price May Change During Payment.',{
+							stop : true,
+							type : "flashy__info"
+					});
+					}, 3500);
+				}
+				else{
+					flashy('Please scroll to top to fill the form.',{
+						timeout: 3000,
+						type : "flashy__warning"
+					});
+					setTimeout(() => {
+						flashy('For Government Buses Ticket Price May Change During Payment.',{
+							stop : true,
+							type : "flashy__info"
+					});
+					}, 3500);
 				}
 
 				// form showing
@@ -811,6 +1029,7 @@
 				}
 			}
 
+
 			// obj making
 			$scope.obj_making = function () {
 				var num_passenger = bookedSeats.length;
@@ -818,8 +1037,8 @@
 					boardingPoints: $('#boardingpoint').val(),
 					droppingPoints: $('#droppingpoint').val(),
 					seatInfo : [],
-					state: "delhi",
-					country: "india"
+					state: "state",
+					country: "country"
 				};
 				for (let i = 0; i < num_passenger; i++) {
 					var n = "#name_"+i;
@@ -841,7 +1060,6 @@
 					alert("fill complete form")
 				}
 			}
-
 
 		})
 		// angular code ends
