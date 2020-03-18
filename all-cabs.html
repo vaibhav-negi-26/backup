@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mile Partner -All buses</title>
+    <!--== META TAGS ==-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- FAV ICON -->
+    <link rel="shortcut icon" href="images/fav.ico">
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--== ALL CSS FILES ==-->
+    <link rel="stylesheet" href="css/cab-search.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/flashy.min.css">
+    <style>
+        /* loader */
+        .wrapper {
+            width: 100%;
+            height: 80vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper h1 {
+            text-shadow: 1px 1px crimson;
+            font-size: 3.5rem;
+        }
+
+        .loader {
+            border: 16px solid #3498db;
+            border-radius: 50%;
+            border-top: 16px solid crimson;
+            width: 100px;
+            height: 100px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* moadal */
+        .form-elegant .font-small {
+            font-size: 0.8rem;
+        }
+
+        .form-elegant .z-depth-1a {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+            box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+        }
+
+        .form-elegant .z-depth-1-half,
+        .form-elegant .btn:hover {
+            -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+            box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+        }
+
+        .form-elegant .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-dialog .form-elegant .btn .fab {
+            color: #2196f3 !important;
+        }
+
+        .form-elegant .modal-body,
+        .form-elegant .modal-footer {
+            font-weight: 400;
+        }
+
+        .blue-gradient {
+            color: white;
+            background: linear-gradient(to right, rgb(36, 141, 202), rgb(56, 63, 197));
+            text-transform: uppercase;
+            border-radius: 50px !important;
+        }
+
+        .blue-gradient:hover {
+            background: linear-gradient(to right, rgb(56, 63, 197), rgb(36, 141, 202));
+        }
+
+        .btn-white {
+            background-color: #ffffff !important;
+            color: #2196f3 !important;
+            border-radius: 50px !important;
+        }
+
+        .md-form input {
+            border: none;
+            border-bottom: 1px solid #2196f3 !important;
+            border-radius: 0px !important;
+            color: #2196f3 !important;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <!-- NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #ffffff !important;">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <!-- Logo Image -->
+                <img src="images/logo_org.png" width="110px" alt="" class="d-inline-block align-middle">
+
+            </a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+    <div class="container-fluid px-5">
+        <div class="row wrapper" id="loader_part">
+            <div class="loader"></div>
+        </div>
+        <!-- filter -->
+        <div class="row trip_input_c">
+            <div class="col-md-10">
+                <div class="row ">
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">PICKUP-TIME</span>
+                        <select>
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">FROM</span>
+                        <input type="text" id="source" placeholder="Source">
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">TO</span>
+                        <input type="text" id="destination" placeholder="Destination">
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">PICKUP-DATE</span>
+                        <input type="text" id="departure" placeholder="Date">                        
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">TIME</span>
+                        <select>
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 my-3">
+                <button class="btn btn-primary">SEARCH</button>
+            </div>
+        </div>
+        <!-- filter end -->
+        <div class="row" id="list_part">
+            <div class="col-md-8" style="padding-right: 0px !important;">
+                <!-- repreating element -->
+                <div class="row ava-list my-3" style="padding: 0px !important;" >
+                    <div class="col-md-4 img-sec p-4">
+                        <img class="img-fluid" src="images/icon/cab.png" alt="cabicon">
+                    </div>
+                    <div class="col-md-8 p-4">
+                        <p class="d-flex justify-content-between">
+                            <span>
+                                <b style="font-size: 1.5rem;">Dzire, Etios</b> Or Similar 
+                                <br>
+                                Sedan
+                            </span>  
+                            <span class="text-muted">
+                                <button class="btn btn-info float-right"><strong style="font-size: 1.25rem;">4.4</strong>/5</button>
+                                <br>
+                                <small class="float-right">Based on driver & cab quality</small>
+                            </span>  
+                        </p>
+                        <hr>
+                        <p class="d-flex justify-content-around"> 
+                            <b>Facilities :</b>
+                            <span><i class="fa fa-users" aria-hidden="true"></i> 4 Seater</span>
+                            <span><i class="fa fa-suitcase" aria-hidden="true"></i> 2 Bags</span>
+                            <span><i class="fa fa-snowflake-o" aria-hidden="true"></i> AC</span>
+                        </p>
+                        <hr>
+                        <p>
+                            <span class="float-left py-2">
+                                <b>1417 Kms included</b> | Extra fare ₹16.5/km after 1417 Kms
+                            </span>
+                            <button class="float-right btn btn-success">BOOK NOW</button>
+                        </p>
+                    </div>
+                    <!-- <div class="col-md-12">
+                        <span class="float-left">
+                            <b>1417 Kms included</b> | Extra fare ₹16.5/km after 1417 Kms
+                        </span>
+                        <button class="float-right">BOOK NOW</button>
+                    </div> -->
+                </div>
+                <!-- repreating element end -->
+                
+            </div>
+
+            <!-- form to fill -->
+            <!-- <div class="col-md-3 px-3 mt-md-5 animated slideInRight" id="detail_form" style="display: none;">
+				<div class="jumbotron jumbotron-fluid">
+					<div class="container">
+					</div>
+				</div>
+			</div> -->
+        </div>
+        <div class="row wrapper" id="Error_part">
+            <h1>
+                Sorry No Cabs on this route!
+            </h1>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong
+                            style="text-shadow: 2px 2px grey;font-size: 2.5rem;">Log
+                            In</strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mx-4">
+                    <!--Body-->
+                    <div class="md-form mb-5">
+                        <input type="email" id="Form-email1" class="form-control validate" placeholder="Your email">
+                    </div>
+
+                    <div class="md-form pb-3">
+                        <input type="password" id="Form-pass1" class="form-control validate"
+                            placeholder="Your password">
+                        <br>
+                        <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#"
+                                class="blue-text ml-1">
+                                Password?</a></p>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <button type="button" class="btn blue-gradient btn-block z-depth-1a">Sign
+                            in</button>
+                    </div>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+                        with:</p>
+
+                    <div class="row my-3 d-flex justify-content-around">
+                        <!--Facebook-->
+                        <button type="button" class="btn btn-white  z-depth-1a"><i class="fa fa-facebook py-2 px-4"
+                                aria-hidden="true"></i></button>
+                        <!--Google -->
+                        <button type="button" class="btn btn-white  z-depth-1a"><i class="fa fa-google py-2 px-4"
+                                aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                    <p class="font-small grey-text d-flex justify-content-end">Not a member? <a href="#"
+                            class="blue-text ml-1">
+                            Sign Up</a></p>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <!-- Button calling modal -->
+    <div class="text-center" style="display: none;">
+        <a href="" id="login_modal" class="btn btn-default btn-rounded" data-toggle="modal"
+            data-target="#elegantModalForm">Launch
+            modal Login Form</a>
+    </div>
+
+    <!-- footer -->
+    <div class="foot">
+        <p class="text-center">
+            © 2020 MilePartner . All Rights Reserved
+        </p>
+    </div>
+
+    <!--========= Scripts ===========-->
+    <script src="js/angularjs.js"></script>
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="js/bus-layout.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/flashy.min.js"></script>
+
+
+    <script>
+        // boilerplate fo page
+        $('#to').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $(document).ready(function () {
+            // $("#list_part").hide();
+            $("#loader_part").hide();
+            $("#Error_part").hide();
+        });
+        // $('#seats').click(function () {
+        // 	$("#detail_form").fadeIn();
+        // })
+
+        // angular code starts
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http, $location) {
+
+            // url extraction
+            var url = $location.absUrl().split('?')[1];
+            var para = url.split('&')
+            var sourceCity = para[0].split('=')[1];
+            var destinationCity = para[1].split('=')[1];
+            var doj = para[2].split('=')[1];
+            $("#to").val(doj) //setting val of dateinput from query parameters
+
+            var data;
+            var apiUrl = "http://localhost:3000/api/bus/getAvailableBuses?sourceCity=" + sourceCity +
+                "&destinationCity=" + destinationCity + "&doj=";
+            var newUrl;
+            // call for bus list
+            // $http.get()
+            // .then(function (response) {
+            // 	data = response.data.apiAvailableBuses;
+            // 	if (data === null) {
+            // 		$("#loader_part").fadeOut("slow");
+            // 		$('#Error_part').fadeIn("slow");
+            // 	} else {
+
+            // 		$scope.priBus = []; //length 0 the no pri bus
+            // 		$scope.govBus= []; //length 0 the no gov bus
+            // 		// seperating private and gov buses
+            // 		angular.forEach(data, function (value, key) { 
+            //             if (!value.isRTC) {
+            // 				$scope.priBus.push(value); 
+            // 			}
+            // 		}); 
+            // 		angular.forEach(data, function (value, key) { 
+            //             if (!value.isRTC) {
+            // 				$scope.govBus.push(value); 
+            // 			}
+            // 		}); 
+
+            // 		// hiding no bus part and tables
+            // 		if ($scope.priBus.length) {
+            // 			$('#Error_pri').hide();
+            // 		}
+            // 		if ($scope.govBus.length) {
+            // 			$('#Error_gov').hide();
+            // 		}
+
+            // 		// returns min fare
+            // 		$scope.getFare = function (bus) {
+            // 			var one = bus.fare.split(',')
+            // 			one[0] = parseInt(one[0]);
+            // 			one[1] = parseInt(one[1]);
+            // 			return Math.min(...one)
+            // 		}
+            // 		$("#loader_part").fadeOut("slow");
+
+            // 		setTimeout(function () {
+            // 			console.log("response came and list shown");
+            // 			$('#list_part').fadeIn("fast");
+            // 		}, 500);
+
+            // 		//login modal after 10sec of user serfing 
+            // 		// setTimeout(function () {
+            // 		// 	console.log("login Pls");
+            // 		// 	$('#login_modal').click();
+            // 		// }, 10000);
+
+            // 	}	
+            //   })
+
+
+        })
+        // angular code ends
+    </script>
+</body>
+
+</html>

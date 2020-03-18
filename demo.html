@@ -4,14 +4,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-
-    </style>
+    <title>Mile Partner - Search Cab</title>
+    <!-- FAV ICON -->
+    <link rel="shortcut icon" href="images/fav.ico">
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/cab-search.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="css/flashy.min.css">
 </head>
 
-<body>
-    
+<body ng-app="">
+
+    <div class="to-part">
+        <!-- NAVBAR-->
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+            <div class="container">
+                <a href="index.html" class="navbar-brand">
+                    <!-- Logo Image -->
+                    <img src="images/logo_org.png" width="110px" alt="" class="d-inline-block align-middle">
+
+                </a>
+                <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                        <!-- <li class="nav-item"><a href="print-cancel.html" class="nav-link">Print/Cancel Ticket</a></li> -->
+                        <li class="nav-item"><a href="#" class="nav-link">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- NAVBAR END -->
+        <div class="container">
+            <div class="row justify-content-center mt-3">
+                <div class="col-md-3 search-icon border-1">
+                    <!-- package -->
+                    <span><a href="#"><img src="images/icon/2_b.png" alt="icon"></a></span>
+                    <!-- bus -->
+                    <span><a href="#"><img src="images/icon/34_b.png" alt="icon"></a></span>
+                </div>
+                <div class="col-md-3  search-icon border-2">
+                    <!-- hotel -->
+                    <span><a href="#"><img src="images/icon/1_b.png" alt="icon"></a></span>
+                    <!-- car -->
+                    <span><a href="#"><img src="images/icon/35_t.png" alt="icon"></a></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="container pb-1">
+            <div class="row justify-content-center detail-fill">
+
+                <div class="p-5 bg-white br shadow">
+                    <!-- Rounded tabs -->
+                    <ul id="myTab" role="tablist"
+                        class="nav nav-tabs nav-pills flex-column flex-sm-row justify-content-around text-center bg-light border-0 rounded-nav">
+                        <li class="nav-item flex-sm-fill">
+                            <a id="o-o-w-tab" data-toggle="tab" href="#o-o-w" role="tab" aria-controls="o-o-w"
+                                aria-selected="true"
+                                class="nav-link border-0 text-uppercase font-weight-bold active">outstation one-way</a>
+                        </li>
+                        <li class="nav-item flex-sm-fill">
+                            <a id="o-r-t-tab" data-toggle="tab" href="#o-r-t" role="tab" aria-controls="o-r-t"
+                                aria-selected="false"
+                                class="nav-link border-0 text-uppercase font-weight-bold">outstation round trip</a>
+                        </li>
+                        <li class="nav-item flex-sm-fill">
+                            <a id="a-t-tab" data-toggle="tab" href="#a-t" role="tab" aria-controls="a-t"
+                                aria-selected="false" class="nav-link border-0 text-uppercase font-weight-bold">airport
+                                transfer</a>
+                        </li>
+                    </ul>
+
+                    <!-- content -->
+                    <div id="myTabContent" class="tab-content">
+
+                        <div id="o-o-w" role="tabpanel" aria-labelledby="o-o-w-tab"
+                            class="tab-pane fade px-4 py-5 show active">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">FROM</span>
+                                        <input type="text" id="source" placeholder="Source">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">TO</span>
+                                        <input type="text" id="destination" placeholder="Destination">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">Departure</span>
+                                        <input type="text" id="departure" placeholder="Date">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">PICKUP-TIME</span>
+                                        <select>
+                                            <option>Default select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="search-btn">
+                                SEARCH
+                            </button>
+                        </div>
+
+                        <div id="o-r-t" role="tabpanel" aria-labelledby="o-r-t-tab" class="tab-pane fade px-4 py-5">
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">FROM</span>
+                                        <input type="text" id="source_2" placeholder="Source">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">TO</span>
+                                        <input type="text" id="destination_2" placeholder="Destination">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">Departure</span>
+                                        <input type="text" id="departure_2" placeholder="Date">
+                                    </div>
+                                    <div class="col-md-3 trip_input">
+                                        <span class="text-muted d-block text-uppercase">Return</span>
+                                        <input type="text" id="return" placeholder="Date">
+                                    </div>
+                                    <div class="col-md-3 trip_input mt-md-5">
+                                        <span class="text-muted d-block text-uppercase">PICKUP-TIME</span>
+                                        <select>
+                                            <option>Default select</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="search-btn">
+                                SEARCH
+                            </button>
+                        </div>
+
+                        <div id="a-t" role="tabpanel" aria-labelledby="a-t-tab" class="tab-pane fade px-4 py-5">
+                           <p class="text-muted">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium quo tempora amet et! Sunt fugit ullam unde explicabo, nisi, est, harum sequi repudiandae quaerat animi dignissimos quod iste perferendis voluptatibus? Vel odit odio enim ab sequi cum, perferendis voluptates at nobis quidem assumenda aperiam itaque labore sit impedit sed hic.</p>
+                            <button class="search-btn">
+                                SEARCH
+                            </button>
+                        </div>
+
+                    </div>
+                    <!-- End rounded tabs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-5">
+        <div class="row">
+            <h1>
+                Main Section
+            </h1>
+            <p class="text-muted">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore cumque dolorem illum ratione exercitationem ea ab voluptatem ut excepturi sint optio laboriosam obcaecati aliquam adipisci, perspiciatis magnam molestiae veritatis laudantium itaque, voluptatibus numquam, unde a? Hic, nulla quam maxime voluptates nostrum voluptate eos quisquam atque repellat. Dolores incidunt cum in fuga nihil, atque non reiciendis commodi, rerum et, numquam soluta vero ex optio maiores officiis cumque odit accusamus vel maxime quia earum. Sunt sed architecto nobis esse aut, ratione ab qui modi magni voluptate! Nesciunt reprehenderit aliquid praesentium repudiandae aspernatur laboriosam asperiores nulla, quisquam necessitatibus esse, voluptatibus impedit, facere commodi.
+            </p>
+        </div>
+    </div>
+
+     <!-- footer -->
+    <div class="foot">
+        <p class="text-center">
+            © 2020 MilePartner . All Rights Reserved
+        </p>
+    </div>
+
+    <!-- scripts -->
+
+    <script src="js/angularjs.js"></script>
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script>
+        var availableTags = [
+            "Hyderabad",
+            "Itanagar",
+            "Dispur",
+            "Patna",
+            "Raipur",
+            "Panaji",
+            "Gandhi Nagar",
+            "Chandigarh",
+            "Shimla/ Dharamshala",
+            "Jammu/ Srinagar",
+            "Ranchi",
+            "Bengaluru",
+            "Thiruvananthapuram",
+            "Bhopal",
+            "Mumbai",
+            "Imphal",
+            "Shillong",
+            "Aizawal",
+            "Kohima",
+            "Bhubaneshwar",
+            "Chandigarh",
+            "Jaipur",
+            "Gangtok",
+            "Chennai",
+            "Hyderabad",
+            "Agartala",
+            "Dehradun",
+            "Lucknow",
+            "Kolkata"
+        ];
+        $("#source").autocomplete({
+            source: availableTags
+        });
+        $("#destination").autocomplete({
+            source: availableTags
+        });
+        $('#departure').datepicker({});
+    </script>
 </body>
 
 </html>
