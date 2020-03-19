@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Mile Partner -All buses</title>
+    <!--== META TAGS ==-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- FAV ICON -->
+    <link rel="shortcut icon" href="images/fav.ico">
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <!--== ALL CSS FILES ==-->
+    <link rel="stylesheet" href="css/cab-search.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mycss.css">
+    <link rel="stylesheet" href="css/flashy.min.css">
+    <style>
+        /* loader */
+        .wrapper {
+            width: 100%;
+            height: 80vh;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .wrapper h1 {
+            text-shadow: 1px 1px crimson;
+            font-size: 3.5rem;
+        }
+
+        .loader {
+            border: 16px solid #3498db;
+            border-radius: 50%;
+            border-top: 16px solid crimson;
+            width: 100px;
+            height: 100px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
+        }
+
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* moadal */
+        .form-elegant .font-small {
+            font-size: 0.8rem;
+        }
+
+        .form-elegant .z-depth-1a {
+            -webkit-box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+            box-shadow: 0 2px 5px 0 rgba(55, 161, 255, 0.26), 0 4px 12px 0 rgba(121, 155, 254, 0.25);
+        }
+
+        .form-elegant .z-depth-1-half,
+        .form-elegant .btn:hover {
+            -webkit-box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+            box-shadow: 0 5px 11px 0 rgba(85, 182, 255, 0.28), 0 4px 15px 0 rgba(36, 133, 255, 0.15);
+        }
+
+        .form-elegant .modal-header {
+            border-bottom: none;
+        }
+
+        .modal-dialog .form-elegant .btn .fab {
+            color: #2196f3 !important;
+        }
+
+        .form-elegant .modal-body,
+        .form-elegant .modal-footer {
+            font-weight: 400;
+        }
+
+        .blue-gradient {
+            color: white;
+            background: linear-gradient(to right, rgb(36, 141, 202), rgb(56, 63, 197));
+            text-transform: uppercase;
+            border-radius: 50px !important;
+        }
+
+        .blue-gradient:hover {
+            background: linear-gradient(to right, rgb(56, 63, 197), rgb(36, 141, 202));
+        }
+
+        .btn-white {
+            background-color: #ffffff !important;
+            color: #2196f3 !important;
+            border-radius: 50px !important;
+        }
+
+        .md-form input {
+            border: none;
+            border-bottom: 1px solid #2196f3 !important;
+            border-radius: 0px !important;
+            color: #2196f3 !important;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <!-- NAVBAR-->
+    <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #ffffff !important;">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <!-- Logo Image -->
+                <img src="images/logo_org.png" width="110px" alt="" class="d-inline-block align-middle">
+
+            </a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"><span class="navbar-toggler-icon"></span></button>
+
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">Contact us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Main content -->
+    <div class="container-fluid px-4">
+        <div class="row wrapper" id="loader_part">
+            <div class="loader"></div>
+        </div>
+        <!-- filter -->
+        <div class="row trip_input_c">
+            <div class="col-md-10">
+                <div class="row ">
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">PICKUP-TIME</span>
+                        <select>
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">FROM</span>
+                        <input type="text" id="source" placeholder="Source">
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">TO</span>
+                        <input type="text" id="destination" placeholder="Destination">
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">PICKUP-DATE</span>
+                        <input type="text" id="departure" placeholder="Date">                        
+                    </div>
+                    <div class="col-md-2 trip_input_2">
+                        <span class="text-muted d-block text-uppercase">TIME</span>
+                        <select>
+                            <option>Default select</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 my-3">
+                <button class="btn btn-primary">SEARCH</button>
+            </div>
+        </div>
+        <!-- filter end -->
+        <div class="row mt-4 px-5">
+            <h3>
+                <b>Outstation One-way   </b>
+            </h1>
+        </div>
+        <div class="row" id="list_part">
+            <div class="col-md-8" style="padding-right: 0px !important; ">
+                <!-- repreating element -->
+                <div class="row ava-list my-3" style="padding: 0px !important; border: 1px solid black;" >
+                    <div class="col-md-4 img-sec p-4">
+                        <img class="img-fluid" src="images/icon/cab.png" alt="cabicon">
+                    </div>
+                    <div class="col-md-8 py-5" >
+                        <p class="d-flex justify-content-between">
+                            <span>
+                                <b style="font-size: 1.5rem;">Dzire, Etios</b> Or Similar 
+                                <br>
+                                Sedan
+                            </span>  
+                            <span class="text-muted">
+                                <button class="btn btn-info float-right"><strong style="font-size: 1.25rem;">4.4</strong>/5</button>
+                                <br>
+                                <small class="float-right">Based on driver & cab quality</small>
+                            </span>  
+                        </p>
+                        <hr>
+                        <p class="d-flex justify-content-around"> 
+                            <b>Facilities :</b>
+                            <span><i class="fa fa-users" aria-hidden="true"></i> 4 Seater</span>
+                            <span><i class="fa fa-suitcase" aria-hidden="true"></i> 2 Bags</span>
+                            <span><i class="fa fa-snowflake-o" aria-hidden="true"></i> AC</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- repreating element end -->
+
+                <!-- cab details -->
+                <div class="row ava-list my-3 px-md-5 px-4 d-block" style="border: 1px solid black;" >
+                    <h3>
+                        <b>Driver & Cab details</b>
+                    </h3>
+                    <hr>
+                    <p>
+                        <b>Cab details will be shared up to 2 hrs prior to departure.</b>
+                    </p>
+                </div>
+                <!-- cab details end-->
+
+                <!-- cab provider details-->
+                <div class="row ava-list my-3 px-md-5 px-4 d-block" style="border: 1px solid black;" >
+                    <h3>
+                        <b>Cab provider</b>
+                    </h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <p>
+                                <b>NAME : Ryde</b>
+                            </p>
+                            <p>
+                                <b>PRICE :</b> ₹23555
+                            </p>
+                        </div>
+                        <div class="col-md-4">
+                            <p>
+                                <b>INCLUSIONS</b>
+                            </p>
+                            <ul class="list-unstyled px-md-2">
+                                <li><i class="fa fa-check" aria-hidden="true"></i> 1417 Kms</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Driver Allowance</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Only One Pickup and Drop</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <p>
+                                <b>EXTRA FARE</b>
+                            </p>
+                            <ul>
+                                <li >Fare beyond 1417 Kms 
+                                    <span class="pl-5 float-right"><b>₹ 16.5/Km</b></span>
+                                </li>
+                                <li>Toll Tax and State Tax
+                                    <span class="pl-5 float-right"><b>As applicable</b></span>
+                                </li>
+                                <li>Waiting Charges
+                                    <span class="pl-5 float-right"><b>After 45 mins, ₹ 2/min</b></span>
+                                </li>
+                                <li>Night charges(11 PM to 6 AM) 
+                                    <span class="pl-5 float-right"><b>₹ 250.0</b></span>
+                                </li>
+                                <li>Parking/ Airport Entry Charges
+                                    <span class="pl-5 float-right"><b>As applicable</b></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- cab provider details end-->
+
+                <!-- trip details-->
+                <div class="row ava-list my-3 px-5 d-block" style="border: 1px solid black;" >
+                    <h3>
+                        <b>Trip details</b>
+                    </h3>
+                    <br>
+
+                    <h5>
+                        <b>Confirm Pick-up details</b>
+                        <br>
+                        <small class="text-muted">
+                            This will help the driver reach you on time.
+                        </small>
+                    </h5>
+                    <br>
+
+                    <h6>
+                        <b>Pick-up address</b>
+                    </h6>
+                    <div class="form-group">
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Enter exact pickup location"></textarea>
+                    </div>
+                    <hr>
+                    <h5>
+                        <b>Confirm Traveller information</b>
+                    </h5>
+                    <div class="row">
+                        <div class="col-md-8 pr-5">
+                            <br>
+                            <h6>
+                                <b>Name</b>
+                            </h6>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="inlineFormInputName" placeholder="Enter Full Name">
+                            </div>
+                            <!--  -->
+                            <h6>
+                                <b>Email</b>
+                                <small class="text-muted">
+                                    (Your booking confirmation will be sent here)
+                                </small>
+                            </h6>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email ID">
+                            </div>
+                            <!-- <br> -->
+                            <h6>
+                                <b>Contact Number</b>
+                            </h6>
+                            <div class="form-group">
+                                <input type="number" class="form-control" id="inlineFormInputName" placeholder="Enter Contact Number">
+                            </div>
+                            <br>
+                            <input type="checkbox" name="" id="" checked> I Agree to the Privacy Policy, User Agreement and Terms of Service
+                        </div>
+                        <div class="col-md-4" style="font-size: 0.75rem;">
+                            <br>
+                            <h6>
+                                <b>Why Sign up or Login</b>
+                            </h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Get access to Secret Deals</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Manage your bookings from one place</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Redeem Wallet Cash & get additional discount!</li>
+                                <li><i class="fa fa-check" aria-hidden="true"></i> Book Faster- we’ll save & pre-enter your details</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- trip details end-->
+
+            </div>
+
+            <!-- form to fill || right side content -->
+            <div class="col-md-4 px-3 my-md-3 animated slideInRight" id="detail_form">
+				<div class="row ava-list mx-2 d-block" style="border: 1px solid black;">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">PAY 15%(₹ 3489)</button>
+                    <div>
+                        <br>
+                        <input type="radio" id="driver" name="price" value="driver" checked>
+                        <label style="width: 95%;" for="driver"><b>Pay 15% now</b> and rest to driver <b class="float-right">₹ 3489</b></label><br>
+                        <input type="radio" id="online" name="price" value="online">
+                        <label style="width: 95%;" for="online"><b>Pay full online</b> <b class="float-right">₹ 23255</b></label><br>
+                        <hr>
+                    </div>
+                    <div>
+                        <span>Total Amount inclusive of GST</span>
+                        <span class="float-right"><b>₹ 23255</b></span>
+                        <hr>
+                    </div>
+                    <div>
+                        <p>
+                            <span>Base price</span>
+                            <span class="float-right"><b>₹ 23255</b></span>
+                        </p>
+                        <input type="radio" id="WINTERCAB" name="discount" value="WINTERCAB" checked>
+                        <label style="width: 95%;" for="WINTERCAB"><i class="fa fa-tags" aria-hidden="true"></i> WINTERCAB <small class="float-right">(₹ 23255)</small></label><br>
+                        <input type="radio" id="CABFV" name="discount" value="CABFV">
+                        <label style="width: 95%;" for="CABFV"><i class="fa fa-tags" aria-hidden="true"></i> CABFV <small class="float-right">(₹ 23255)</small></label><br>
+                    </div>
+                   <div>
+                        <h6>
+                            <b>
+                                Enter Coupon code
+                            </b>
+                        </h6>
+                        <div class="input-group mb-3">                
+                            <input type="text" class="form-control" placeholder="eg. CAB1000" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                            <button class="btn btn-outline-primary" type="button">Button</button>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+			</div>
+        </div>
+        <div class="row wrapper" id="Error_part">
+            <h1>
+                Sorry No Cabs on this route!
+            </h1>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="elegantModalForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <!--Content-->
+            <div class="modal-content form-elegant">
+                <!--Header-->
+                <div class="modal-header text-center">
+                    <h3 class="modal-title w-100 dark-grey-text font-weight-bold my-3" id="myModalLabel"><strong
+                            style="text-shadow: 2px 2px grey;font-size: 2.5rem;">Log
+                            In</strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mx-4">
+                    <!--Body-->
+                    <div class="md-form mb-5">
+                        <input type="email" id="Form-email1" class="form-control validate" placeholder="Your email">
+                    </div>
+
+                    <div class="md-form pb-3">
+                        <input type="password" id="Form-pass1" class="form-control validate"
+                            placeholder="Your password">
+                        <br>
+                        <p class="font-small blue-text d-flex justify-content-end">Forgot <a href="#"
+                                class="blue-text ml-1">
+                                Password?</a></p>
+                    </div>
+
+                    <div class="text-center mb-3">
+                        <button type="button" class="btn blue-gradient btn-block z-depth-1a">Sign
+                            in</button>
+                    </div>
+                    <p class="font-small dark-grey-text text-right d-flex justify-content-center mb-3 pt-2"> or Sign in
+                        with:</p>
+
+                    <div class="row my-3 d-flex justify-content-around">
+                        <!--Facebook-->
+                        <button type="button" class="btn btn-white  z-depth-1a"><i class="fa fa-facebook py-2 px-4"
+                                aria-hidden="true"></i></button>
+                        <!--Google -->
+                        <button type="button" class="btn btn-white  z-depth-1a"><i class="fa fa-google py-2 px-4"
+                                aria-hidden="true"></i></button>
+                    </div>
+                </div>
+                <!--Footer-->
+                <div class="modal-footer mx-5 pt-3 mb-1">
+                    <p class="font-small grey-text d-flex justify-content-end">Not a member? <a href="#"
+                            class="blue-text ml-1">
+                            Sign Up</a></p>
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!-- Modal -->
+
+    <!-- Button calling modal -->
+    <div class="text-center" style="display: none;">
+        <a href="" id="login_modal" class="btn btn-default btn-rounded" data-toggle="modal"
+            data-target="#elegantModalForm">Launch
+            modal Login Form</a>
+    </div>
+
+    <!-- footer -->
+    <div class="foot">
+        <p class="text-center">
+            © 2020 MilePartner . All Rights Reserved
+        </p>
+    </div>
+
+    <!--========= Scripts ===========-->
+    <script src="js/angularjs.js"></script>
+    <script src="js/jquery-latest.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="js/bus-layout.js"></script>
+    <script src="js/generator.js"></script>
+    <script src="js/flashy.min.js"></script>
+
+
+    <script>
+        // boilerplate fo page
+        $('#to').datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
+        $(document).ready(function () {
+            // $("#list_part").hide();
+            $("#loader_part").hide();
+            $("#Error_part").hide();
+        });
+        // $('#seats').click(function () {
+        // 	$("#detail_form").fadeIn();
+        // })
+
+        // angular code starts
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http, $location) {
+
+            // url extraction
+            var url = $location.absUrl().split('?')[1];
+            var para = url.split('&')
+            var sourceCity = para[0].split('=')[1];
+            var destinationCity = para[1].split('=')[1];
+            var doj = para[2].split('=')[1];
+            $("#to").val(doj) //setting val of dateinput from query parameters
+
+            var data;
+            var apiUrl = "http://localhost:3000/api/bus/getAvailableBuses?sourceCity=" + sourceCity +
+                "&destinationCity=" + destinationCity + "&doj=";
+            var newUrl;
+            // call for bus list
+            // $http.get()
+            // .then(function (response) {
+            // 	data = response.data.apiAvailableBuses;
+            // 	if (data === null) {
+            // 		$("#loader_part").fadeOut("slow");
+            // 		$('#Error_part').fadeIn("slow");
+            // 	} else {
+
+            // 		$scope.priBus = []; //length 0 the no pri bus
+            // 		$scope.govBus= []; //length 0 the no gov bus
+            // 		// seperating private and gov buses
+            // 		angular.forEach(data, function (value, key) { 
+            //             if (!value.isRTC) {
+            // 				$scope.priBus.push(value); 
+            // 			}
+            // 		}); 
+            // 		angular.forEach(data, function (value, key) { 
+            //             if (!value.isRTC) {
+            // 				$scope.govBus.push(value); 
+            // 			}
+            // 		}); 
+
+            // 		// hiding no bus part and tables
+            // 		if ($scope.priBus.length) {
+            // 			$('#Error_pri').hide();
+            // 		}
+            // 		if ($scope.govBus.length) {
+            // 			$('#Error_gov').hide();
+            // 		}
+
+            // 		// returns min fare
+            // 		$scope.getFare = function (bus) {
+            // 			var one = bus.fare.split(',')
+            // 			one[0] = parseInt(one[0]);
+            // 			one[1] = parseInt(one[1]);
+            // 			return Math.min(...one)
+            // 		}
+            // 		$("#loader_part").fadeOut("slow");
+
+            // 		setTimeout(function () {
+            // 			console.log("response came and list shown");
+            // 			$('#list_part').fadeIn("fast");
+            // 		}, 500);
+
+            // 		//login modal after 10sec of user serfing 
+            // 		// setTimeout(function () {
+            // 		// 	console.log("login Pls");
+            // 		// 	$('#login_modal').click();
+            // 		// }, 10000);
+
+            // 	}	
+            //   })
+
+
+        })
+        // angular code ends
+    </script>
+</body>
+
+</html>
