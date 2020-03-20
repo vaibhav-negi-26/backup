@@ -46,6 +46,7 @@ nav {
     background-color: #f8f9fa !important;
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
     margin-bottom: 2%;
+    border-radius: 12px !important;
 }
 
 .icon img {
@@ -75,6 +76,9 @@ nav {
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.35);
     margin-top: 4%;
     width: 100% !important;
+    background-color: #f8f9fa !important;
+    
+    
 }
 
 @media (max-width: 576px) {

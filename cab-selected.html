@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Mile Partner -All buses</title>
+    <title>Mile Partner - Selected Cab</title>
     <!--== META TAGS ==-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/mycss.css">
     <link rel="stylesheet" href="css/flashy.min.css">
+    <link rel="stylesheet" href="css/my-radio.css">
     <style>
         /* loader */
         .wrapper {
@@ -144,7 +145,7 @@
         </div>
     </nav>
     <!-- Main content -->
-    <div class="container-fluid px-4">
+    <div class="container-fluid px-5">
         <div class="row wrapper" id="loader_part">
             <div class="loader"></div>
         </div>
@@ -179,7 +180,7 @@
                 </div>
             </div>
             <div class="col-md-2 my-3">
-                <button class="btn btn-primary">SEARCH</button>
+                <button class="btn-grad btn btn-primary">SEARCH</button>
             </div>
         </div>
         <!-- filter end -->
@@ -191,7 +192,7 @@
         <div class="row" id="list_part">
             <div class="col-md-8" style="padding-right: 0px !important; ">
                 <!-- repreating element -->
-                <div class="row ava-list my-3" style="padding: 0px !important; border: 1px solid black;" >
+                <div class="row ava-list my-3" style="padding: 0px !important; " >
                     <div class="col-md-4 img-sec p-4">
                         <img class="img-fluid" src="images/icon/cab.png" alt="cabicon">
                     </div>
@@ -220,7 +221,7 @@
                 <!-- repreating element end -->
 
                 <!-- cab details -->
-                <div class="row ava-list my-3 px-md-5 px-4 d-block" style="border: 1px solid black;" >
+                <div class="row ava-list my-3 px-md-5 px-4 d-block" >
                     <h3>
                         <b>Driver & Cab details</b>
                     </h3>
@@ -232,7 +233,7 @@
                 <!-- cab details end-->
 
                 <!-- cab provider details-->
-                <div class="row ava-list my-3 px-md-5 px-4 d-block" style="border: 1px solid black;" >
+                <div class="row ava-list my-3 px-md-5 px-4 d-block" >
                     <h3>
                         <b>Cab provider</b>
                     </h3>
@@ -283,7 +284,7 @@
                 <!-- cab provider details end-->
 
                 <!-- trip details-->
-                <div class="row ava-list my-3 px-5 d-block" style="border: 1px solid black;" >
+                <div class="row ava-list my-3 px-5 d-block" >
                     <h3>
                         <b>Trip details</b>
                     </h3>
@@ -356,15 +357,25 @@
             </div>
 
             <!-- form to fill || right side content -->
-            <div class="col-md-4 px-3 my-md-3 animated slideInRight" id="detail_form">
-				<div class="row ava-list mx-2 d-block" style="border: 1px solid black;">
-                    <button type="button" class="btn btn-primary btn-lg btn-block">PAY 15%(₹ 3489)</button>
+            <div class="col-md-4 px-md-3 my-md-3 animated slideInRight" id="detail_form">
+				<div class="row ava-list ml-md-5 d-block">
+                    <button type="button" class="btn-grad btn btn-primary btn-lg btn-block">PAY 15% (₹ 3489)</button>
                     <div>
                         <br>
-                        <input type="radio" id="driver" name="price" value="driver" checked>
+                        <!-- <input type="radio" id="driver" name="price" value="driver" checked>
                         <label style="width: 95%;" for="driver"><b>Pay 15% now</b> and rest to driver <b class="float-right">₹ 3489</b></label><br>
                         <input type="radio" id="online" name="price" value="online">
                         <label style="width: 95%;" for="online"><b>Pay full online</b> <b class="float-right">₹ 23255</b></label><br>
+                        <hr> -->
+
+                        <label class="container2"><b>Pay 15% now</b><small style="font-size: .75rem;"> and rest to driver</small> <b class="float-right">₹ 3489</b>
+                            <input type="radio" value="driver" checked name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container2"><b>Pay full online</b> <b class="float-right">₹ 23255</b>
+                            <input type="radio" name="radio"  value="online">
+                            <span class="checkmark"></span>
+                        </label>
                         <hr>
                     </div>
                     <div>
@@ -377,10 +388,18 @@
                             <span>Base price</span>
                             <span class="float-right"><b>₹ 23255</b></span>
                         </p>
-                        <input type="radio" id="WINTERCAB" name="discount" value="WINTERCAB" checked>
+                        <label class="container2"><i class="fa fa-tags" aria-hidden="true"></i> WINTERCAB <small class="float-right">(₹ 23255)</small>
+                            <input type="radio" value="WINTERCAB" checked name="discount">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="container2"><i class="fa fa-tags" aria-hidden="true"></i> CABFV <small class="float-right">(₹ 23255)</small>
+                            <input type="radio" name="discount"  value="CABFV">
+                            <span class="checkmark"></span>
+                        </label>
+                        <!-- <input type="radio" id="WINTERCAB" name="discount" value="WINTERCAB" checked>
                         <label style="width: 95%;" for="WINTERCAB"><i class="fa fa-tags" aria-hidden="true"></i> WINTERCAB <small class="float-right">(₹ 23255)</small></label><br>
                         <input type="radio" id="CABFV" name="discount" value="CABFV">
-                        <label style="width: 95%;" for="CABFV"><i class="fa fa-tags" aria-hidden="true"></i> CABFV <small class="float-right">(₹ 23255)</small></label><br>
+                        <label style="width: 95%;" for="CABFV"><i class="fa fa-tags" aria-hidden="true"></i> CABFV <small class="float-right">(₹ 23255)</small></label><br> -->
                     </div>
                    <div>
                         <h6>
@@ -388,8 +407,9 @@
                                 Enter Coupon code
                             </b>
                         </h6>
-                        <div class="input-group mb-3">                
-                            <input type="text" class="form-control" placeholder="eg. CAB1000" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                        <div class="input-group mb-3">  
+                            <br>              
+                            <input type="text" class="form-control" placeholder="eg. CAB100" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                             <button class="btn btn-outline-primary" type="button">Button</button>
                             </div>

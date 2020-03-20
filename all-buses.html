@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Mile Partner -All buses</title>
+	<title>Mile Partner -All Buses</title>
 	<!--== META TAGS ==-->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/mycss.css">
 	<link rel="stylesheet" href="css/flashy.min.css">
+	<link rel="stylesheet" href="css/my-radio.css">
 	<style>
 		/* loader */
 		.wrapper{
@@ -213,7 +214,7 @@
 							<div id="private" role="tabpanel" aria-labelledby="private-tab"
 								class="tab-pane fade px-4 py-5 show active">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp mb-4" id="pri" ng-repeat="bus in priBus">
+								<div class="row list-bus animated fadeInUp mb-4" style="border-radius: 12px;" id="pri" ng-repeat="bus in priBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
@@ -342,7 +343,7 @@
 							<div id="government" role="tabpanel" aria-labelledby="government-tab"
 								class="tab-pane fade px-4 py-5">
 								<!-- repreating element -->
-								<div class="row list-bus animated fadeInUp mb-4" id="pri" ng-repeat="bus in govBus">
+								<div class="row list-bus animated fadeInUp mb-4"  style="border-radius: 12px;"  id="pri" ng-repeat="bus in govBus">
 									<!-- details -->
 									<div class="col-md-2 icon px-md-5">
 										<img src="images/icon/buses.png" alt="busicon">
@@ -475,12 +476,12 @@
 			</div>
 
 			<!-- form to fill -->
+			
 			<div class="col-md-3 px-3 mt-md-5 animated slideInRight" id="detail_form" style="display: none;">
-				<div class="jumbotron jumbotron-fluid">
+				<div class="jumbotron jumbotron-fluid" style="background-color: #f8f9fa !important; border-radius: 12px;">
 					<div class="container">
 						<form>
 							<!-- repeating elements -->
-
 							<div class="form-group font-weight-bold" ng-repeat="person in persons">
 								<h6 class="text-bold"><b><u>Passenger No : {{$index+1}}</u></b></h6>
 								<br>
@@ -526,15 +527,21 @@
 							<p><b>Fare Deatils</b></p>
 							<div class="container-fluid">
 								<div class="row">
-
 									<div class="col-md-12">
-										<p class="lead">Amount <span
-												class="lead font-weight-bold float-right">₹6,050</span></p>
+										<p class="lead">Amount vaibhav <span class="lead font-weight-bold float-right">₹6,050</span></p>
+										<small class="text-muted" style="font-size: 0.75rem;">Taxes will be calculated during payment</small>
 									</div>
-									<div class="col-md-12">
-										<small class="text-muted">Taxes will be calculated during payment</small>
-									</div>		
-
+								</div>
+								<div class="my-4">
+									<p class="lead"><small><b>Available Cupons</b></small></p>
+									<label style="font-size: 1rem !important;" class="container2"><i class="fa fa-tags" aria-hidden="true"></i> WINTERCAB <small class="float-right">(₹ 23255)</small>
+										<input type="radio" value="WINTERCAB" checked name="discount">
+										<span class="checkmark"></span>
+									</label>
+									<label style="font-size: 1rem !important;" class="container2"><i class="fa fa-tags" aria-hidden="true"></i> CABFV <small class="float-right">(₹ 23255)</small>
+										<input type="radio" name="discount"  value="CABFV">
+										<span class="checkmark"></span>
+									</label>
 								</div>
 								<div class="input-group my-2">
 									<input type="text" class="form-control" placeholder="Enter Coupon Code">
