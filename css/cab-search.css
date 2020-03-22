@@ -179,13 +179,6 @@ nav {
     padding: 3px 10px;
 }
 
-@media (max-width: 576px) {
-    .search-btn {
-        padding: 2% 10%;
-        left: 20%;
-    }
-}
-
 /* footer */
 .foot {
     background-color: #ffffff;
@@ -217,13 +210,63 @@ nav {
 }
 
 .btn-grad {
-    background-image: linear-gradient(to left, #514A9D, #24C6DC );
+    background-image: linear-gradient(to left, #514A9D, #24C6DC);
     font-weight: bold !important;
     border-radius: 18px !important;
     /* box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5); */
     transition: ease-in-out;
 }
+
 .btn-grad:hover {
     box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
 }
 
+.freecancel {
+    background-color: #24C6DC !important;
+    width: 92.5%;
+    z-index: -1;
+    position: relative;
+    bottom: -8px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.freecancel p {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #514A9D !important;
+    padding: 1% 0px 2%;
+}
+
+#myProgress {
+    width: 100% !important;
+    background-color: #de6161 !important;
+    border-radius: 12px;
+    box-shadow: 0 5px 5px -5px rgba(0, 0, 0, 0.5);
+    margin: 5% 0% 10%;
+}
+
+#myBar {
+    border-radius: 12px;
+    width: 80%;
+    height: 30px;
+    background-color: #2657eb;
+    font-size: 0.8rem;
+    padding-top: 1%;
+    text-align: center;
+    color: white;
+}
+
+@media (max-width: 576px) {
+    .search-btn {
+        padding: 2% 10%;
+        left: 20%;
+    }
+
+    .freecancel {
+        width: 109%;
+    }
+}

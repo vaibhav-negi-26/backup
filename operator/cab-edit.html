@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Admin - Cab Edit</title>
+    <!--== META TAGS ==-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!--== FAV ICON ==-->
+    <link rel="shortcut icon" href="images/fav.ico">
+
+    <!-- GOOGLE FONTS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600|Quicksand:300,400,500" rel="stylesheet">
+
+    <!-- FONT-AWESOME ICON CSS -->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+
+    <!--== ALL CSS FILES ==-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mob.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/materialize.css" />
+    <script src="js/jquery.min.js"></script>
+    <style>
+        #passnotmatch {
+            color: crimson;
+            font-size: large;
+            border: 1px solid crimson;
+            padding: 1%;
+            border-radius: 30px;
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+	<script src="js/respond.min.js"></script>
+	<![endif]-->
+</head>
+
+<body>
+    <!--== MAIN CONTRAINER ==-->
+    <div class="container-fluid sb1">
+        <div class="row" id="nav">
+            <!-- navbar -->
+            <script>
+                $('#nav').load("temp/navbar.html");
+            </script>
+        </div>
+    </div>
+
+    <!--== BODY CONTNAINER ==-->
+    <div class="container-fluid sb2">
+        <div class="row">
+            <!-- left side bar -->
+            <div class="sb2-1" id="leftside">
+                <script>
+                    $('#leftside').load("temp/left-sec.html");
+                </script>
+            </div>
+            <!-- middel section -->
+            <div class="sb2-2">
+                <div class="sb2-2-2">
+                    <ul>
+                        <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Home</a>
+                        </li>
+                        <li class="active-bre"><a href="#"> Edit Cab Details</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="sb2-2-add-blog sb2-2-1">
+                    <div class="box-inn-sp">
+                        <div class="inn-title">
+                            <h4>Edit Cab Details</h4>
+                        </div>
+
+                        <div class="bor">
+                            <form>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="nameopt" type="text" class="validate">
+                                        <label for="nameopt">Name</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="cabnumber" type="text" class="validate">
+                                        <label for="cabnumber">Cab Number</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <select multiple ng-model="A">
+                                            <option value="" disabled selected>Choose Category</option>
+                                            <option value="1">Hotels</option>
+                                            <option value="2">Educations</option>
+                                            <option value="3">Medical</option>
+                                            <option value="3">Health</option>
+                                        </select>
+                                        <label>Select Amenities</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <form action="#">
+                                            <div class="file-field input-field">
+                                                <div class="btn">
+                                                    <span>File</span>
+                                                    <input type="file" multiple>
+                                                </div>
+                                                <div class="file-path-wrapper">
+                                                    <input class="file-path validate" type="text"
+                                                        placeholder="Upload one files only">
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h4>
+                                            Availability
+                                        </h4>
+                                        <div style="padding: 10px 0px;">
+                                            <input id="yes" type="radio" name="availability" class="validate">
+                                            <label for="yes">Yes</label>
+                                            <input id="no" type="radio" name="availability" class="validate">
+                                            <label for="no">No</label>
+                                        </div>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="operatorid" type="text" class="validate">
+                                        <label for="operatorid">Operator ID</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <h4>
+                                            Partial payment accepted
+                                        </h4>
+                                        <div style="padding: 10px 0px 20px;">
+                                            <input id="yespartial" type="radio" name="partialpay" class="validate">
+                                            <label for="yespartial">Yes</label>
+                                            <input id="nopartial" type="radio" name="partialpay" class="validate">
+                                            <label for="nopartial">No</label>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="input-field col s12">
+                                        <input id="passopt" type="password" class="validate">
+                                        <label for="list-title">Password</label>
+                                    </div>
+                                    <div class="input-field col s12">
+                                        <input id="cpassopt" type="password" class="validate">
+                                        <label for="list-title">Confirm Password</label>
+                                    </div>
+                                    <div class="col s12" id="notmatchbox" style="display: none;">
+                                        <label for="list-title" id="passnotmatch">Password Did not match</label>
+                                    </div> -->
+                                </div>
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="optsubmit" type="submit" class="waves-effect waves-light btn-large"
+                                            value="Submit">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--== BOTTOM FLOAT ICON ==-->
+    <section>
+        <div class="fixed-action-btn vertical">
+            <a class="btn-floating btn-large red pulse">
+                <i class="large material-icons">mode_edit</i>
+            </a>
+            <ul>
+                <li><a class="btn-floating red"><i class="material-icons">insert_chart</i></a>
+                </li>
+                <li><a class="btn-floating yellow darken-1"><i class="material-icons">format_quote</i></a>
+                </li>
+                <li><a class="btn-floating green"><i class="material-icons">publish</i></a>
+                </li>
+                <li><a class="btn-floating blue"><i class="material-icons">attach_file</i></a>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!--======== SCRIPT FILES =========-->
+
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+        function valid() {
+            var one = $("#passopt").val();
+            var two = $("#cpassopt").val();
+            if (one === two) {
+                return true;
+            }
+            return false;
+        }
+        $("form").submit(function (e) {
+            if (valid()) {
+                alert("equal");
+            } else {
+                e.preventDefault();
+                $("#notmatchbox").fadeIn(1000);
+            }
+        });
+        $("#cpassopt").keyup(function () {
+            if (valid()) {
+                $("#passnotmatch").fadeOut(250);
+            }
+        });
+    </script>
+</body>
+
+</html>

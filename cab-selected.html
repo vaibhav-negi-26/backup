@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/datepicker.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/mycss.css">
     <link rel="stylesheet" href="css/flashy.min.css">
     <link rel="stylesheet" href="css/my-radio.css">
     <style>
@@ -122,8 +121,8 @@
         }
     </style>
 </head>
-
-<body ng-app="myApp" ng-controller="myCtrl">
+<!-- ng-app="myApp" ng-controller="myCtrl" -->
+<body>
     <!-- NAVBAR-->
     <nav class="navbar navbar-expand-lg navbar-light shadow-sm" style="background-color: #ffffff !important;">
         <div class="container">
@@ -150,7 +149,7 @@
             <div class="loader"></div>
         </div>
         <!-- filter -->
-        <div class="row trip_input_c">
+        <div class="row animated fadeIn trip_input_c">
             <div class="col-md-10">
                 <div class="row ">
                     <div class="col-md-2 trip_input_2">
@@ -192,7 +191,7 @@
         <div class="row" id="list_part">
             <div class="col-md-8" style="padding-right: 0px !important; ">
                 <!-- repreating element -->
-                <div class="row ava-list my-3" style="padding: 0px !important; " >
+                <div class="row ava-list animated fadeInUp my-3" style="padding: 0px !important; " >
                     <div class="col-md-4 img-sec p-4">
                         <img class="img-fluid" src="images/icon/cab.png" alt="cabicon">
                     </div>
@@ -212,16 +211,16 @@
                         <hr>
                         <p class="d-flex justify-content-around"> 
                             <b>Facilities :</b>
-                            <span><i class="fa fa-users" aria-hidden="true"></i> 4 Seater</span>
-                            <span><i class="fa fa-suitcase" aria-hidden="true"></i> 2 Bags</span>
-                            <span><i class="fa fa-snowflake-o" aria-hidden="true"></i> AC</span>
+                            <span><i class="fa fa-check-circle-o" aria-hidden="true"></i> 4 Seater</span>
+                            <span><i class="fa fa-check-circle-o" aria-hidden="true"></i> 2 Bags</span>
+                            <span><i class="fa fa-check-circle-o" aria-hidden="true"></i> AC</span>
                         </p>
                     </div>
                 </div>
                 <!-- repreating element end -->
 
                 <!-- cab details -->
-                <div class="row ava-list my-3 px-md-5 px-4 d-block" >
+                <div class="row ava-list animated fadeInUp my-3 px-md-5 px-4 d-block" >
                     <h3>
                         <b>Driver & Cab details</b>
                     </h3>
@@ -233,7 +232,7 @@
                 <!-- cab details end-->
 
                 <!-- cab provider details-->
-                <div class="row ava-list my-3 px-md-5 px-4 d-block" >
+                <div class="row ava-list animated fadeInUp my-3 px-md-5 px-4 d-block" >
                     <h3>
                         <b>Cab provider</b>
                     </h3>
@@ -284,12 +283,11 @@
                 <!-- cab provider details end-->
 
                 <!-- trip details-->
-                <div class="row ava-list my-3 px-5 d-block" >
+                <div class="row ava-list animated fadeInUp my-3 px-5 d-block" >
                     <h3>
                         <b>Trip details</b>
                     </h3>
-                    <br>
-
+                    <hr>
                     <h5>
                         <b>Confirm Pick-up details</b>
                         <br>
@@ -354,11 +352,100 @@
                 </div>
                 <!-- trip details end-->
 
+                <!-- Read before you book!-->
+                <div class="row ava-list animated fadeInUp my-3 px-5 d-block" >
+                    <h3>
+                        <b>Read before you book!</b>
+                    </h3>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5>
+                                <b>Cancellation information</b>                              
+                            </h5>
+                            
+                            <div id="myProgress">
+                                <div id="myBar">Free Cancellation before 1 hour of pickup time</div>
+                            </div> 
+                            <h5>
+                                <b>Cab Category</b>
+                                <br>
+                                <small class="text-muted">
+                                    The booking will be for cab type HATCHBACK and we do not commit on providing the preferred cab model (Indica, Swift or similar).
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Hilly Regions</b>
+                                <br>
+                                <small class="text-muted">
+                                    AC will be switched off in hilly areas.
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Luggage Policy</b>
+                                <br>
+                                <small class="text-muted">
+                                    You can accommodate up to 2 small bags in Hatchback.
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Driver Details</b>
+                                <br>
+                                <small class="text-muted">
+                                    Driver details will be shared up to 2 hrs prior to departure.
+                                </small>
+                            </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5>
+                                <b>Stops</b>
+                                <br>
+                                <small class="text-muted">
+                                    This is a point to point booking and only one stop for meals is included.
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Delays</b>
+                                <br>
+                                <small class="text-muted">
+                                    Due to traffic or any other unavoidable reason, pickup may be delayed by 30 mins.
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Waiting Charges</b>
+                                <br>
+                                <small class="text-muted">
+                                    Driver would wait maximum 45 minutes from your scheduled pickup time at your pickup location. Post this, your trip may get cancelled without any refund. If there is a mutual agreement between customer and driver, waiting charges would be Rs 2 /Min.
+                                </small>
+                            </h5>
+                            <br>
+                            <h5>
+                                <b>Receipts</b>
+                                <br>
+                                <small class="text-muted">
+                                    You need to collect the receipts from driver for any toll tax, state tax, night charges or extra km paid directly to the driver during the trip. MMT is not liable to provide invoices for such amount
+                                </small>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+                <!-- Read before you book! end-->
+
             </div>
 
             <!-- form to fill || right side content -->
             <div class="col-md-4 px-md-3 my-md-3 animated slideInRight" id="detail_form">
-				<div class="row ava-list ml-md-5 d-block">
+                <div class="row freecancel mx-md-5">
+                    <p>
+                        <i class="fa fa-info-circle" aria-hidden="true"></i> Free Cancellation before 1 hour of pickup time
+                    </p>
+                </div>
+                <div class="row ava-list ml-md-5 d-block">
                     <button type="button" class="btn-grad btn btn-primary btn-lg btn-block">PAY 15% (₹ 3489)</button>
                     <div>
                         <br>
@@ -526,21 +613,21 @@
         // })
 
         // angular code starts
-        var app = angular.module("myApp", []);
-        app.controller("myCtrl", function ($scope, $http, $location) {
+        // var app = angular.module("myApp", []);
+        // app.controller("myCtrl", function ($scope, $http, $location) {
 
-            // url extraction
-            var url = $location.absUrl().split('?')[1];
-            var para = url.split('&')
-            var sourceCity = para[0].split('=')[1];
-            var destinationCity = para[1].split('=')[1];
-            var doj = para[2].split('=')[1];
-            $("#to").val(doj) //setting val of dateinput from query parameters
+        //     // url extraction
+        //     var url = $location.absUrl().split('?')[1];
+        //     var para = url.split('&')
+        //     var sourceCity = para[0].split('=')[1];
+        //     var destinationCity = para[1].split('=')[1];
+        //     var doj = para[2].split('=')[1];
+        //     $("#to").val(doj) //setting val of dateinput from query parameters
 
-            var data;
-            var apiUrl = "http://localhost:3000/api/bus/getAvailableBuses?sourceCity=" + sourceCity +
-                "&destinationCity=" + destinationCity + "&doj=";
-            var newUrl;
+        //     var data;
+        //     var apiUrl = "http://localhost:3000/api/bus/getAvailableBuses?sourceCity=" + sourceCity +
+        //         "&destinationCity=" + destinationCity + "&doj=";
+        //     var newUrl;
             // call for bus list
             // $http.get()
             // .then(function (response) {
@@ -596,7 +683,7 @@
             //   })
 
 
-        })
+        // })
         // angular code ends
     </script>
 </body>
